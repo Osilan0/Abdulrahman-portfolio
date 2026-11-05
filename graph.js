@@ -139,5 +139,6 @@
   new IntersectionObserver(([en]) => { visible = en.isIntersecting; }).observe(host);
   APP.onProfile.push(build);
   colors(); resize(); build();
+  document.addEventListener('portfolio:theme', colors);
   raf = requestAnimationFrame(tick);
 })();

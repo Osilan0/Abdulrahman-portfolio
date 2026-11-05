@@ -18,6 +18,8 @@
     certifications: 'M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z M8.6 14l-1.6 7 5-2.8 5 2.8-1.6-7',
     contact: 'M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z M3 7l9 6 9-6',
     calendar: 'M4 6h16a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z M3 10.5h18 M8 3.5v4 M16 3.5v4',
+    sun: 'M12 16.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9z M12 2.5v2 M12 19.5v2 M4.6 4.6l1.4 1.4 M18 18l1.4 1.4 M2.5 12h2 M19.5 12h2 M4.6 19.4L6 18 M18 6l1.4-1.4',
+    moon: 'M20 14.6A8.5 8.5 0 0 1 9.4 4a8.5 8.5 0 1 0 10.6 10.6z',
     search: 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z M20 20l-4-4', plus: 'M12 5v14M5 12h14', tag: 'M3 12V4h8l10 10-8 8z M7.5 7.5h.01',
     chev: 'M9 6l6 6-6 6', copy: 'M9 9h10v10H9z M5 15V5h10', link: 'M14 4h6v6 M20 4l-9 9 M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5',
     arrow: 'M7 17L17 7M8 7h9v9', refresh: 'M20 11a8 8 0 1 0-2.3 5.7 M20 4v7h-7', check: 'M5 12l4 4 10-10',
@@ -117,7 +119,7 @@
       ${Object.keys(P.links).length ? `<h2>Profiles</h2><div class="acts" style="margin-top:0">${Object.entries(P.links).map(([k, v]) => /^https?:\/\//.test(v) ? `<a class="btn" href="${esc(v)}" target="_blank" rel="noopener">${esc(k)}${icon('link')}</a>` : '').join('')}</div>` : ''}
       ${P.location ? `<h2 style="margin-top:10px">Based in</h2><p>${esc(P.location)}</p>` : ''}</div>`;
     const cm = $('#copyMail'); if (cm) cm.onclick = () => copy(P.email, 'Email address copied');
-    const mb = $('#meetBtn'); if (mb) mb.innerHTML = bk ? icon('calendar') + 'Book a meeting' : 'Request a meeting';
+    const mb = $('#meetBtn'); if (mb) mb.innerHTML = bk ? icon('calendar') + '<span>Book<span class="hide-xs"> a meeting</span></span>' : 'Request a meeting';
     if (!$('#v-contact').hidden) mountBooking();
     $('#stats').innerHTML = statsHTML();
     renderTimeline(); renderResume();
@@ -175,6 +177,23 @@
   window.addEventListener('message', e => {
     if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') toast('Booked. Check your email for the calendar invite.');
   });
+
+  // Theme: white by default (the black-and-white design). Visitors can switch to night mode; the choice is remembered.
+  function setTheme(t, save) {
+    document.documentElement.dataset.theme = t;
+    if (save) { try { localStorage.setItem('theme', t); } catch (e) {} }
+    const b = $('#themeBtn'), label = t === 'dark' ? 'Switch to white mode' : 'Switch to night mode';
+    if (b) { b.innerHTML = icon(t === 'dark' ? 'sun' : 'moon'); b.setAttribute('aria-label', label); b.title = label; }
+    document.dispatchEvent(new Event('portfolio:theme'));
+  }
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
+  setTheme(savedTheme === 'dark' ? 'dark' : 'light', false);
+  if ($('#themeBtn')) $('#themeBtn').onclick = () => {
+    setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true);
+    const f = $('#cal iframe'); // reload the calendar so it picks up the new colors
+    if (f) { f.remove(); if (!$('#v-contact').hidden) mountBooking(); }
+  };
 
   let current = 'assistant';
   function markNav() { document.querySelectorAll('.nav-btn').forEach(b => { if (b.dataset.go === current) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); }); }

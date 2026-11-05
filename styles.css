@@ -393,3 +393,11 @@ button.stat:hover b{text-decoration:underline;text-decoration-thickness:1px;text
 .cal-wait{position:absolute;inset:0;margin:0;display:grid;place-items:center;font-size:14px;color:var(--muted)}
 .book-cta{margin:14px 0 2px}
 @media (max-width:640px){.cal{height:1000px}.booking-bar{padding:12px 14px}}
+
+/* Theme switch (white / night) in the top bar */
+.theme-btn{display:inline-grid;place-items:center;flex:none;width:38px;height:38px;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--muted);cursor:pointer}
+.theme-btn .i{width:17px;height:17px}
+.theme-btn:hover{border-color:var(--muted);color:var(--ink)}
+.theme-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.search-btn{flex:none}
+@media (max-width:430px){.hide-xs{display:none}}
