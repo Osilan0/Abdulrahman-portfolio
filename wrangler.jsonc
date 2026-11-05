@@ -1,0 +1,9 @@
+// Cloudflare Workers settings. worker.js answers /api/chat; every other address is a file from this folder
+// (.assetsignore lists the files that stay private). Keep "name" the same as the Worker in your Cloudflare dashboard.
+// Your Groq key goes in the dashboard as a secret named LLM_API_KEY, never in this file.
+{
+  "name": "abdulrahman-portfolio",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": ".", "binding": "ASSETS" }
+}

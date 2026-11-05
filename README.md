@@ -2,7 +2,7 @@
 
 A chat-first portfolio. Visitors ask an AI about you, and it answers **only** from your own profile. The same profile also fills the sections: Startups, Projects, Experience, Campus & volunteering, Certifications, About and Contact.
 
-It runs on a free LLM, and you can host it for free on Vercel.
+It runs on a free LLM, and you can host it for free on Cloudflare or Vercel.
 
 ## How it works
 
@@ -24,7 +24,10 @@ Visitor's browser ──question──▶ /api/chat (your server) ──▶ free
 | File | What it is |
 |---|---|
 | `profile.json` | **Everything about you.** The sections and the chatbot both read from it. |
-| `api/chat.js` | The serverless function that calls the LLM. |
+| `api/_answer.js` | The chat logic: calls the LLM (with a backup model) and falls back to answers built from the profile. Every host uses it. |
+| `api/chat.js` | The chat endpoint on Vercel and in the local preview. |
+| `worker.js`, `wrangler.jsonc`, `.assetsignore` | The Cloudflare Workers version (`.assetsignore` keeps code and notes off the site). |
+| `functions/api/chat.js` | The Cloudflare Pages version. |
 | `core.js` | Shared logic: the AI rules (`buildPrompt`), source tags, offline answers. |
 | `index.html`, `styles.css`, `app.js`, `chat.js` | The website. |
 | `dev.js` | A local preview server with nothing to install. |
@@ -82,21 +85,37 @@ node dev.js
 
 Open http://localhost:3000. Without a key, the chat still works with quick answers.
 
-## 4. Put it online for free (Vercel)
+## 4. Put it online for free
 
-1. Push this folder to a GitHub repository. `.env` (your key) and `PUBLIC_FACTS_REVIEW.md` (private notes) are ignored, so neither is uploaded or deployed.
-2. Go to https://vercel.com, sign in with GitHub, choose **Add New → Project**, and import the repository. You don't need any build settings.
-3. In **Settings → Environment Variables**, add `LLM_API_KEY` (and `LLM_MODEL` or `LLM_BASE_URL` if you changed them).
-4. Deploy. The sidebar should say "AI on".
-5. Optional: once your domain works, set `ALLOWED_ORIGIN` to your site's addresses, separated by commas (for example `https://yourdomain.com,https://www.yourdomain.com`), so other sites can't use your chat endpoint.
+First push this folder to a GitHub repository. `.env` (your key) and `PUBLIC_FACTS_REVIEW.md` (private notes) are ignored, so neither is uploaded. Then pick a host. Both are free and run the same code. If your domain is on Cloudflare, Cloudflare is simpler, because it sets up the domain for you.
 
-## 5. Use your own domain (Cloudflare)
+### Option A: Cloudflare Workers
+
+1. In the Cloudflare dashboard, go to **Workers & Pages → Create** and import the repository. Keep the name `abdulrahman-portfolio`: it must match `name` in `wrangler.jsonc`. There's nothing to build, because `wrangler.jsonc` holds the settings.
+2. Open the Worker, then **Settings → Variables and Secrets → Add**. Choose **Secret**, name it `LLM_API_KEY`, paste your Groq key, and deploy.
+3. Open the site's `workers.dev` address. The sidebar should say "Assistant online".
+
+Prefer Cloudflare Pages? Create a Pages project from the repository with no build command and `/` as the build output directory. `functions/api/chat.js` runs the chat, and `LLM_API_KEY` goes under **Settings → Variables and Secrets**.
+
+### Option B: Vercel
+
+1. Go to https://vercel.com, sign in with GitHub, choose **Add New → Project**, and import the repository. You don't need any build settings.
+2. In **Settings → Environment Variables**, add `LLM_API_KEY` (and `LLM_MODEL` or `LLM_BASE_URL` if you changed them).
+3. Deploy. The sidebar should say "Assistant online".
+
+Optional, on either host: once your domain works, set `ALLOWED_ORIGIN` to your site's addresses, separated by commas (for example `https://yourdomain.com,https://www.yourdomain.com`), so other sites can't use your chat endpoint.
+
+## 5. Use your own domain
+
+**Hosted on Cloudflare:** open the Worker, then **Settings → Domains & Routes → Add → Custom domain** (on Pages: **Custom domains → Set up a custom domain**). Add `yourdomain.com`, then `www.yourdomain.com`. Cloudflare creates the DNS records and the HTTPS certificate. To send `www` visitors to the main address, add the **Redirect from WWW to root** rule under **Rules** for the domain.
+
+**Hosted on Vercel, domain on Cloudflare:**
 
 1. In Vercel, open the project, then **Settings → Domains**. Add `yourdomain.com`, then add `www.yourdomain.com` and set it to redirect to `yourdomain.com`.
 2. Vercel shows the DNS records each domain needs (usually an A record for the bare domain and a CNAME for `www`).
 3. In Cloudflare, open the domain, then **DNS → Records → Add record**, and copy each record exactly. Set **Proxy status** to **DNS only** (grey cloud): Vercel issues the HTTPS certificate itself, and Cloudflare's proxy can get in the way.
 4. Back in Vercel, wait until both domains show **Valid Configuration**. This usually takes a few minutes.
-5. Set `ALLOWED_ORIGIN` as in step 4.5 above, then redeploy.
+5. Set `ALLOWED_ORIGIN` (see above), then redeploy.
 
 ## Limits worth knowing
 

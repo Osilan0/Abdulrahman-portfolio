@@ -1,0 +1,20 @@
+# Cloudflare Workers serves this folder as the website. These files are server code, settings or notes,
+# so they are not published as pages.
+.git
+.wrangler
+node_modules
+.env*
+.dev.vars*
+api
+functions
+worker.js
+wrangler.jsonc
+dev.js
+package.json
+package-lock.json
+README.md
+PUBLIC_FACTS_REVIEW.md
+vercel.json
+.vercelignore
+.gitignore
+.assetsignore

@@ -5,3 +5,7 @@ node_modules
 
 # Private sign-off notes: never commit or deploy
 PUBLIC_FACTS_REVIEW.md
+
+# Cloudflare local files
+.wrangler/
+.dev.vars*
