@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Abdulrahman Osilan: founder, AI product builder and Computational Data Science student at Penn State. Ask the portfolio assistant.">
+<style>[hidden]{display:none!important}</style>
+<title>Abdulrahman Osilan · Portfolio</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Abdulrahman Osilan · Portfolio">
+<meta property="og:description" content="Founder, AI product builder and Computational Data Science student at Penn State. Ask my portfolio assistant anything about my work.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app" id="app">
+  <aside class="side" id="side" aria-label="Navigation">
+    <div class="brand"><span class="mark" id="mark" aria-hidden="true">AO</span><div style="min-width:0"><b id="sName">Abdulrahman Osilan</b><span id="sHead"></span></div></div>
+    <button class="new" type="button" id="newChat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New conversation</button>
+    <nav class="group" aria-label="Workspace"><h2>Workspace</h2><div id="navWork"></div></nav>
+    <nav class="group" aria-label="Portfolio"><h2>Portfolio</h2><div id="navPort"></div></nav>
+    <div class="group"><h2>Recent</h2><div class="recent" id="recent"><p class="none">Your questions appear here.</p></div></div>
+    <div class="side-foot">
+      <div class="status" id="status" role="status"><i></i><span>Connecting the assistant…</span></div>
+      <p class="keys"><kbd>⌘</kbd><kbd>K</kbd> search <span aria-hidden="true">·</span> <kbd>/</kbd> commands</p>
+      <button class="load" type="button" id="loadBtn" hidden>Load your own info</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" type="button" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <p class="crumbs" id="crumbs">Portfolio / <b>Assistant</b></p>
+      <span class="avail" id="avail" hidden><i aria-hidden="true"></i><span></span></span>
+      <span class="sp"></span>
+      <button class="search-btn" type="button" data-palette aria-label="Search the portfolio"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z M20 20l-4-4"/></svg><span>Search</span><kbd>⌘K</kbd></button>
+      <button class="btn hide-s" type="button" data-go="resume">Résumé</button>
+      <button class="btn primary" type="button" id="meetBtn" data-go="contact">Request a meeting</button>
+    </header>
+
+    <div class="scroll" id="scroll">
+      <section class="view" id="v-assistant" aria-labelledby="wTitle">
+        <div class="welcome" id="welcome">
+          <div class="hero">
+            <div class="hero-text">
+              <p class="eyebrow live"><span class="dot" aria-hidden="true"></span>Portfolio assistant · online</p>
+              <h1 id="wTitle">Every question about my work, <em>answered with sources.</em></h1>
+              <p class="sub" id="wSub">I answer questions about my work, using only this portfolio.</p>
+            </div>
+            <figure class="sph-box">
+              <div class="sphere" id="sphere"></div>
+              <figcaption class="sph-cap">Knowledge map · drag to rotate</figcaption>
+            </figure>
+          </div>
+          <div class="stats" id="stats"></div>
+          <p class="prompts-h">Start with a question</p>
+          <div class="prompts" id="prompts"></div>
+        </div>
+        <div class="thread" id="thread" aria-live="polite"></div>
+      </section>
+      <section class="view" id="v-overview" hidden></section>
+      <section class="view" id="v-timeline" hidden></section>
+      <section class="view" id="v-resume" hidden></section>
+      <section class="view" id="v-startups" hidden></section>
+      <section class="view" id="v-projects" hidden></section>
+      <section class="view" id="v-experience" hidden></section>
+      <section class="view" id="v-campus" hidden></section>
+      <section class="view" id="v-certifications" hidden></section>
+      <section class="view" id="v-contact" hidden></section>
+    </div>
+
+    <div class="dock" id="dock">
+      <div class="dock-in">
+        <div class="slash" id="slash" role="listbox" aria-label="Commands" hidden></div>
+        <form id="form">
+          <label class="sr" for="q">Ask a question</label>
+          <textarea id="q" rows="1" maxlength="1000" placeholder="Ask anything about my work"></textarea>
+          <button class="send" id="send" type="submit" aria-label="Send question" disabled><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+        </form>
+        <p class="fine"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Answers draw only on this portfolio and cite their sources. <span class="hide-s">Enter to send · Shift+Enter for a new line</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Entry details" aria-hidden="true">
+  <header><p class="eyebrow" id="dKind">Entry</p><button class="x" type="button" id="dClose" aria-label="Close details"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+  <div class="body" id="dBody"></div>
+  <footer id="dFoot"></footer>
+</aside>
+
+<div class="overlay" id="importer" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="impTitle">
+    <div class="line" style="justify-content:space-between"><h2 id="impTitle">Use your own information</h2><button class="btn" type="button" id="impClose">Close</button></div>
+    <p>Paste a resume and Claude converts it into a profile, or edit the profile directly. Changes are saved in this browser only.</p>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tabResume" aria-selected="true">Paste a resume</button>
+      <button type="button" role="tab" id="tabJson" aria-selected="false">Edit profile JSON</button>
+    </div>
+    <div id="paneResume" class="line" style="flex-direction:column;align-items:stretch">
+      <label class="sr" for="resumeText">Resume text</label>
+      <textarea id="resumeText" placeholder="Paste a resume, LinkedIn About section or project notes…"></textarea>
+      <div class="line"><button class="btn primary" type="button" id="buildBtn">Build the profile</button><span class="msgline" id="buildMsg">This can take up to a minute.</span></div>
+    </div>
+    <div id="paneJson" class="line" style="flex-direction:column;align-items:stretch" hidden>
+      <label class="sr" for="jsonText">Profile JSON</label>
+      <textarea id="jsonText" spellcheck="false"></textarea>
+      <div class="line"><button class="btn primary" type="button" id="applyBtn">Apply</button><button class="btn" type="button" id="copyBtn">Copy JSON</button><button class="btn" type="button" id="resetBtn">Restore original</button><span class="msgline" id="jsonMsg"></span></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="core.js"></script>
+<script src="app.js"></script>
+<script src="palette.js"></script>
+<script src="graph.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>

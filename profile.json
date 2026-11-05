@@ -1,0 +1,592 @@
+{
+  "name": "Abdulrahman Osilan",
+  "headline": "Co-Founder & CEO, Wathiq AI · Computational Data Science, Penn State",
+  "location": "State College, PA and Saudi Arabia",
+  "email": "",
+  "booking": "https://calendly.com/a-osilan/30min",
+  "availability": "",
+  "links": {
+    "LinkedIn": "https://www.linkedin.com/in/abdulrahmanosilan",
+    "GitHub": "https://github.com/Osilan0",
+    "Wathiq AI": "https://wathiq.ai"
+  },
+  "assistant": {
+    "voice": "first-person",
+    "greeting": "I answer questions about Abdulrahman's ventures, AI projects, internships and leadership, using only this portfolio."
+  },
+  "sections": {
+    "startups": {
+      "label": "Startups & ventures",
+      "blurb": "Companies and products I founded or helped build, each labeled with its real stage."
+    },
+    "projects": {
+      "label": "AI & technical projects",
+      "blurb": "Things I built, from computer vision to Arabic language tooling."
+    },
+    "experience": {
+      "label": "Experience",
+      "blurb": "Internships, research and professional training."
+    },
+    "campus": {
+      "label": "Campus engagement",
+      "blurb": "Student leadership, residence life and teaching. Metrics are organization or team results."
+    },
+    "certifications": {
+      "label": "Honors & training",
+      "blurb": "Scholarships, recognition and formal training."
+    }
+  },
+  "about": "I'm a Computational Data Science student at Penn State and a founder working where AI, product and business meet. From an Arabic-first legal workspace to computer-vision pipelines and workflow automation, I turn user problems into prototypes, test them with real people and work to make them useful. The question I keep coming back to is how to turn technically promising ideas into products people trust, use and pay for.",
+  "goals": [
+    "Move Wathiq AI from early traction to reliable, recurring customer adoption",
+    "Build auditable, Arabic-first AI workflows that are tested with real users",
+    "Complete my B.S. in Computational Data Science at Penn State (expected May 2027)",
+    "Start more companies around overlooked business problems, and support research commercialization in Saudi Arabia"
+  ],
+  "lookingFor": "",
+  "skills": [
+    "Python",
+    "SQL",
+    "R",
+    "JavaScript & React",
+    "PyTorch",
+    "OpenCV",
+    "Hugging Face Transformers",
+    "Computer vision",
+    "NLP & Arabic-language AI",
+    "AI agent workflows",
+    "Pandas, NumPy & SciPy",
+    "Tableau & Power BI",
+    "Customer discovery",
+    "Product strategy",
+    "Go-to-market & B2B sales",
+    "Financial modeling",
+    "Business continuity management"
+  ],
+  "education": [
+    {
+      "title": "The Pennsylvania State University",
+      "role": "B.S. Computational Data Science, Mathematics minor",
+      "period": "Expected May 2027",
+      "summary": "Full-ride scholar in the KAUST Gifted Student Program. GPA 3.68 / 4.00 and Dean's List.",
+      "details": [
+        "Coursework in machine learning, big data, data ethics and statistics"
+      ],
+      "tags": [
+        "Data science",
+        "Mathematics"
+      ]
+    },
+    {
+      "title": "University of Pennsylvania",
+      "role": "Foundation program",
+      "period": "",
+      "summary": "A foundation program at the University of Pennsylvania.",
+      "details": [],
+      "tags": [
+        "UPenn"
+      ]
+    }
+  ],
+  "startups": [
+    {
+      "title": "Wathiq AI",
+      "role": "Co-Founder & CEO",
+      "period": "Aug 2025 – now",
+      "status": "Soft rollout",
+      "summary": "An Arabic-first legal workspace for Saudi law firms that brings matters, tasks, documents and AI-assisted legal search with citations into one product.",
+      "details": [
+        "Led 73+ interviews with practicing lawyers to map their workflows and pain points",
+        "Led 10+ AI and product features from concept to soft launch; not every feature is fully deployed",
+        "60+ lawyers in the pilot program and 110 registrations of interest, which are not paying customers",
+        "Raised an SAR 100K equity investment from a Saudi law firm after pitching to its lawyers in person"
+      ],
+      "tags": [
+        "Legaltech",
+        "Arabic AI",
+        "Product",
+        "Fundraising"
+      ],
+      "link": "https://wathiq.ai",
+      "case": {
+        "problem": "Saudi legal teams juggle fragmented tools and manual work for matters, deadlines, documents and research, and general AI tools are weak in Arabic and hard to verify.",
+        "approach": "I interviewed 73+ practicing lawyers, mapped their workflows, turned the findings into product specs, and coordinated developers through prototypes, model testing and feature releases.",
+        "evidence": "60+ lawyers in the pilot program, 110 registrations of interest, and an SAR 100K equity investment from a Saudi law firm.",
+        "next": "Move from soft rollout to reliable, recurring adoption by law firms, measured by time saved, error rate and willingness to pay."
+      }
+    },
+    {
+      "title": "Edarah AI",
+      "role": "Co-Founder",
+      "period": "2026",
+      "status": "MVP built, paused",
+      "summary": "An AI-native property management system for Saudi hotels, born from my time working at a resort front desk.",
+      "details": [
+        "Interviewed 25+ hotel owners and managers; about 20 became interested leads",
+        "Two hotels committed to future pilots; these are commitments, not live deployments",
+        "Built an MVP covering front-desk operations, night audit and reconciliation",
+        "The project is paused and has not launched commercially"
+      ],
+      "tags": [
+        "Hospitality",
+        "Property management",
+        "Automation"
+      ],
+      "case": {
+        "problem": "Working at a resort front desk, I saw hotel back-office work done by hand, while global property management systems were expensive and local ones were harder to use.",
+        "approach": "I interviewed 25+ hotel owners and managers, demonstrated prototypes, and scoped an MVP around front-desk operations, night audit and reconciliation, with input from hospitality advisers.",
+        "evidence": "About 20 interested leads and two future pilot commitments.",
+        "next": "The project is paused; the MVP and the discovery work are the starting point if it resumes."
+      }
+    },
+    {
+      "title": "ElevaPrep",
+      "role": "Co-Founder",
+      "period": "Jul 2026 – now",
+      "status": "Prelaunch",
+      "summary": "Consulting interview preparation built for candidates in the Middle East, with firm-specific recruiting paths.",
+      "details": [
+        "200+ waitlist sign-ups for the prelaunch site, mostly through search and word of mouth",
+        "Ran 20 discovery interviews and collected feedback from 20 early feature testers; the two groups may overlap",
+        "About 11 consultants from regional and international firms shared recruiting-process insights",
+        "Built the prelaunch site in React; the full product has not launched"
+      ],
+      "tags": [
+        "Career education",
+        "SEO",
+        "React"
+      ],
+      "case": {
+        "problem": "Most consulting interview preparation explains US and European processes, while candidates in the Middle East need firm- and region-specific guidance.",
+        "approach": "I ran 20 discovery interviews, gathered recruiting insights from about 11 consultants, and built a prelaunch site in React that grew through search.",
+        "evidence": "200+ waitlist sign-ups and feedback from 20 early feature testers.",
+        "next": "Turn the firm-specific recruiting paths into the first product release."
+      }
+    },
+    {
+      "title": "Wazeefy",
+      "role": "Founder",
+      "period": "2026 – now",
+      "status": "In development",
+      "summary": "AI-supported job discovery and applications for job seekers in Saudi Arabia.",
+      "details": [
+        "Designing AI job matching, tailored applications and a WhatsApp-based application flow",
+        "Candidate dashboard for tracking applications, recruiter replies and interviews"
+      ],
+      "tags": [
+        "HR tech",
+        "Automation"
+      ]
+    },
+    {
+      "title": "SAIS (Saudi AI Solutions)",
+      "role": "Co-Founder & Chief of Operations",
+      "period": "2026 – now",
+      "status": "Early-stage agency",
+      "summary": "A Riyadh-based AI consulting practice focused on governed, measurable AI adoption for Saudi organizations.",
+      "details": [
+        "Built the firm's Arabic writing quality system and traceable research tool (see AI & technical projects)",
+        "Created the 10-page bilingual company profile, its charts and nine SVG logos",
+        "Client engagements are team work led by colleagues; their impact figures are projections and are not claimed here"
+      ],
+      "tags": [
+        "AI consulting",
+        "AI governance",
+        "Arabic"
+      ]
+    },
+    {
+      "title": "Wasl",
+      "role": "Team member, business strategy",
+      "period": "2026",
+      "status": "Competition prototype",
+      "summary": "An NFC tap-to-receive digital receipts concept that cuts paper waste at checkout.",
+      "details": [
+        "Our team placed 2nd among 200+ participants at The Garage entrepreneurship competition",
+        "The team built a working NFC prototype; my part was business strategy, market sizing, commercialization and the pitch",
+        "Entered The Garage incubator after the competition"
+      ],
+      "tags": [
+        "NFC",
+        "Retail",
+        "Pitching"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Video Understanding Pipeline",
+      "role": "Co-developer, KAUST team project",
+      "period": "",
+      "status": "Training project",
+      "summary": "A staged pipeline that turns video into readable scene summaries instead of captioning every frame.",
+      "details": [
+        "YOLOv11n selects informative frames, Florence-2 captions them, and Command R+ writes the scene summary",
+        "Built in Python during KAUST's AI Summer Program"
+      ],
+      "tags": [
+        "Computer vision",
+        "LLMs",
+        "Python"
+      ],
+      "case": {
+        "problem": "Captioning every frame of a video is costly and loses the story across scenes.",
+        "approach": "A staged pipeline: YOLOv11n picks informative frames, Florence-2 captions them, and Command R+ combines the captions into a readable scene summary.",
+        "evidence": "Built as a team project during 320 hours of graduate-level AI training at KAUST.",
+        "next": "Publish sample summaries and measure speed and accuracy before making performance claims."
+      }
+    },
+    {
+      "title": "Arabic Corporate Writing QA System",
+      "role": "Builder, at SAIS",
+      "period": "",
+      "status": "Internal tool",
+      "summary": "An AI writing workflow that drafts and edits Arabic corporate documents, checked by a deterministic linter.",
+      "details": [
+        "Writer and editor agents run through an /arabic-doc workflow",
+        "ar_lint.py has 807 lines, 34 rules and 28 self-tests, modeled on writing patterns from 10 Saudi organizations",
+        "Built with AI assistance (Claude), with every rule covered by tests"
+      ],
+      "tags": [
+        "AI agents",
+        "Arabic NLP",
+        "Python"
+      ],
+      "case": {
+        "problem": "AI-written Arabic corporate text often mixes terminology, slips out of the right register and adds unsupported superlatives.",
+        "approach": "Writer and editor agents draft and revise documents, and a deterministic linter with 34 rules and 28 self-tests checks the result against writing patterns from 10 Saudi organizations.",
+        "evidence": "Applied to the firm's company profile, including 45 Arabic consistency and grammar corrections in one revision.",
+        "next": "Extend the rules and tests as new document types come in."
+      }
+    },
+    {
+      "title": "Traceable Research CLI",
+      "role": "Builder, at SAIS",
+      "period": "",
+      "status": "Internal tool",
+      "summary": "A Python command-line tool that ties published figures to their citations using the Context.dev API.",
+      "details": [
+        "777 lines of Python, built with AI assistance"
+      ],
+      "tags": [
+        "Python",
+        "Research tooling",
+        "APIs"
+      ]
+    },
+    {
+      "title": "SmartSchedule",
+      "role": "Designer & developer",
+      "period": "",
+      "status": "Personal project",
+      "summary": "A React dashboard that combines Canvas coursework, Google Calendar and work shifts in one view, then flags conflicts.",
+      "details": [
+        "In a test account it brought together 113 tasks, 8 exams and 10 work shifts",
+        "Flagged 5 schedule conflicts and surfaced 83 tasks missing from Canvas's default to-do list",
+        "Answers availability questions through an external AI assistant"
+      ],
+      "tags": [
+        "React",
+        "Canvas API",
+        "Google Calendar API"
+      ],
+      "case": {
+        "problem": "Coursework, exams, calendar events and work shifts lived in different places, so tasks were missed and conflicts went unnoticed.",
+        "approach": "A React dashboard pulls in Canvas and Google Calendar data, adds work shifts, and runs rule-based conflict checks.",
+        "evidence": "In a test account it combined 113 tasks, 8 exams and 10 shifts, flagged 5 conflicts and surfaced 83 tasks missing from Canvas's to-do list.",
+        "next": ""
+      }
+    },
+    {
+      "title": "Travel Fare Finder",
+      "role": "Developer",
+      "period": "",
+      "status": "Personal project",
+      "summary": "A flight analytics dashboard that compares fares across 49 city pairs, 7 airports and about 91 route combinations.",
+      "details": [
+        "Processes airfare data and estimates trip costs in an interactive dashboard"
+      ],
+      "tags": [
+        "Data analysis",
+        "APIs",
+        "Dashboards"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "PwC",
+      "role": "Consulting Intern, Strategy & Business Continuity Management",
+      "period": "May 2026 – Aug 2026",
+      "status": "Internship",
+      "summary": "Supported consulting teams in Riyadh on business continuity readiness and strategy work for three major Saudi organizations.",
+      "details": [
+        "Turned assessment findings into executive recommendations, reports and client presentations, producing or contributing to about 500 slides",
+        "Supported 6 client workshops that reached about 250 managers and employees",
+        "Recognized by a director for helping deliver a project on a tight deadline",
+        "Client names are kept confidential"
+      ],
+      "tags": [
+        "Consulting",
+        "Business continuity",
+        "Executive communication"
+      ],
+      "case": {
+        "problem": "Three major Saudi organizations needed to assess their business continuity readiness against standards and act on the gaps.",
+        "approach": "I analyzed assessment inputs, structured gaps and risks into executive recommendations, and built reports, workshop material and client presentations.",
+        "evidence": "About 500 slides produced or contributed, 6 workshops reaching about 250 managers and employees, and director recognition for a tight deadline.",
+        "next": ""
+      }
+    },
+    {
+      "title": "Custodia",
+      "role": "Business Development & Market Research Intern",
+      "period": "May 2025 – Aug 2025",
+      "status": "Internship",
+      "summary": "Built the early commercial pipeline for a KAUST-ecosystem startup that makes IoT tracking devices for animals.",
+      "details": [
+        "Researched Saudi and GCC markets and identified 820 potential customers with AI-assisted prospecting",
+        "Ran outreach, pricing research and negotiations myself",
+        "Closed multiple B2B deals worth about SAR 90K"
+      ],
+      "tags": [
+        "Business development",
+        "Market research",
+        "CRM"
+      ],
+      "case": {
+        "problem": "A KAUST-ecosystem startup with IoT tracking devices for animals needed the right buyers and its first commercial pipeline.",
+        "approach": "I researched Saudi and GCC segments, built the pipeline with AI-assisted prospecting, tested willingness to pay, and ran outreach and negotiations.",
+        "evidence": "820 potential customers identified and multiple B2B deals worth about SAR 90K.",
+        "next": ""
+      }
+    },
+    {
+      "title": "KAUST",
+      "role": "AI Summer Program Trainee",
+      "period": "Jun 2025 – Aug 2025",
+      "status": "Training program",
+      "summary": "320 hours of graduate-level AI training in Thuwal, covering computer vision, NLP, reinforcement learning and deep learning.",
+      "details": [
+        "Co-developed the video understanding pipeline (see AI & technical projects)"
+      ],
+      "tags": [
+        "Deep learning",
+        "Computer vision",
+        "NLP"
+      ]
+    },
+    {
+      "title": "Penn State Astronomy & Astrophysics",
+      "role": "Research Assistant",
+      "period": "Oct 2024 – Dec 2025",
+      "status": "Research",
+      "summary": "Computational analysis of white dwarf pulsations using Python, Fourier transforms and Kolmogorov–Smirnov tests.",
+      "details": [
+        "Identified 10 stellar candidates for further investigation"
+      ],
+      "tags": [
+        "Python",
+        "Signal analysis",
+        "Statistics"
+      ]
+    }
+  ],
+  "campus": [
+    {
+      "title": "Saudi Arabian Student Association (SASA)",
+      "role": "Vice President",
+      "period": "Aug 2026 – now",
+      "status": "Current role",
+      "summary": "Co-lead strategy and operations for Penn State's Saudi student association: executive talks, career fairs, cultural events and mentorship.",
+      "details": [
+        "Association results: 7 major events with 2,000+ cumulative attendees",
+        "Programs engaged 18 CEOs and vice presidents, 2 ministers and 14 recruiters",
+        "The association's budget grew about 600%, and its content drew about 20M social media views"
+      ],
+      "tags": [
+        "Leadership",
+        "Partnerships",
+        "Events"
+      ]
+    },
+    {
+      "title": "Penn State Esports",
+      "role": "Vice President",
+      "period": "May 2024 – Apr 2026",
+      "status": "Past role",
+      "summary": "Helped run strategy, sponsorships, finance and events for a gaming community of about 950 members.",
+      "details": [
+        "Team results: event attendance up 220%, 14 sponsorship partnerships and budget up 310%"
+      ],
+      "tags": [
+        "Community",
+        "Sponsorships",
+        "Operations"
+      ]
+    },
+    {
+      "title": "Penn State Residence Life",
+      "role": "Resident Assistant",
+      "period": "Aug 2026 – now",
+      "status": "Current role",
+      "summary": "Support and mentor 36 residents, from wellbeing and duty coverage to community events.",
+      "details": [
+        "Part of a residence-life team that runs about 25 events a semester"
+      ],
+      "tags": [
+        "Mentoring",
+        "Community"
+      ]
+    },
+    {
+      "title": "Penn State Mathematics",
+      "role": "Math Learning Assistant",
+      "period": "Jan 2024 – May 2026",
+      "status": "Past role",
+      "summary": "Led problem-solving sessions for MATH 140, Calculus I.",
+      "details": [
+        "64 sessions with 2,240 total student attendances"
+      ],
+      "tags": [
+        "Teaching",
+        "Calculus"
+      ]
+    },
+    {
+      "title": "Student Space Programs Laboratory",
+      "role": "Member",
+      "period": "Aug 2023 – May 2025",
+      "status": "Past role",
+      "summary": "Member of Penn State's student aerospace lab, working on rocket payloads.",
+      "details": [
+        "Rocket payload development and sensor programming",
+        "Took part in design reviews and testing"
+      ],
+      "tags": [
+        "Aerospace",
+        "Sensors",
+        "Testing"
+      ]
+    },
+    {
+      "title": "Campus Ambassador",
+      "role": "Orientation and campus tours",
+      "period": "",
+      "status": "Past role",
+      "summary": "Welcomed 100+ students at fall and summer orientations, supported campus tours, answered questions and gave technology help.",
+      "details": [],
+      "tags": [
+        "Orientation",
+        "Student support"
+      ]
+    },
+    {
+      "title": "Arabic Conversation Program",
+      "role": "Arabic Teaching Partner",
+      "period": "",
+      "status": "Past role",
+      "summary": "Taught Arabic grammar through a university conversation program, in one-hour weekly sessions with a first-year student minoring in Arabic.",
+      "details": [],
+      "tags": [
+        "Teaching",
+        "Arabic"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "KAUST Gifted Student Program",
+      "role": "Full-ride scholarship",
+      "period": "2022",
+      "status": "Scholarship",
+      "summary": "Full-ride scholarship for undergraduate study at Penn State.",
+      "details": [],
+      "tags": [
+        "Scholarship"
+      ]
+    },
+    {
+      "title": "Dean's List",
+      "role": "Penn State",
+      "period": "",
+      "status": "Recognition",
+      "summary": "Dean's List recognition at Penn State.",
+      "details": [],
+      "tags": [
+        "Academic"
+      ]
+    },
+    {
+      "title": "The Garage entrepreneurship competition",
+      "role": "2nd place, team Wasl",
+      "period": "2026",
+      "status": "Award",
+      "summary": "Second place among 200+ participants with Wasl, an NFC digital receipts prototype.",
+      "details": [],
+      "tags": [
+        "Competition",
+        "Entrepreneurship"
+      ]
+    },
+    {
+      "title": "Smeal Consulting Training Program",
+      "role": "Team lead, 4-person team",
+      "period": "2025",
+      "status": "Training program",
+      "summary": "Consulting training at Penn State's Smeal College of Business, ending in a simulated client project for Fernandes Fruit Farm.",
+      "details": [
+        "Proposed AI and IoT improvements to supply chain and operations, with projected (not measured) productivity gains of 30–50%",
+        "Presented findings to faculty and industry professionals"
+      ],
+      "tags": [
+        "Consulting",
+        "Financial modeling"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is Wathiq AI?",
+      "a": "Wathiq AI is an Arabic-first legal workspace for Saudi law firms. I co-founded it in August 2025 and lead it as CEO. It brings matters, tasks, documents and AI-assisted legal search with citations into one product, and it is in a soft rollout with pilot lawyers."
+    },
+    {
+      "q": "Why do you build products?",
+      "a": "I'm drawn to the zero-to-one stage: finding an overlooked operational problem, talking to real users, building a working prototype and testing whether people will adopt it. The question I keep coming back to is how to turn technically promising ideas into products people trust, use and pay for."
+    },
+    {
+      "q": "What languages do you speak?",
+      "a": "Arabic and English."
+    },
+    {
+      "q": "Where are you based?",
+      "a": "I study at Penn State in State College, Pennsylvania, and my startup and consulting work is in Saudi Arabia."
+    }
+  ],
+  "suggestedQuestions": [
+    {
+      "section": "startups",
+      "q": "What is Wathiq AI, and what stage is it at?"
+    },
+    {
+      "section": "projects",
+      "q": "How does your video understanding pipeline work?"
+    },
+    {
+      "section": "experience",
+      "q": "What did you work on at PwC?"
+    },
+    {
+      "section": "campus",
+      "q": "How have you led student organizations at Penn State?"
+    },
+    {
+      "section": "certifications",
+      "q": "What scholarships and recognition have you received?"
+    },
+    {
+      "section": "overview",
+      "q": "Why do you build AI products?"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+.env
+.env.local
+.vercel
+node_modules
+
+# Private sign-off notes: never commit or deploy
+PUBLIC_FACTS_REVIEW.md

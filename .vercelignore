@@ -1,0 +1,4 @@
+# Keep private notes off the live site
+PUBLIC_FACTS_REVIEW.md
+.env
+.env.local

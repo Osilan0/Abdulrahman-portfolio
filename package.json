@@ -1,0 +1,11 @@
+{
+  "name": "abdulrahman-portfolio",
+  "private": true,
+  "description": "Chat-first portfolio: an AI that answers only from profile.json.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node dev.js"
+  }
+}
