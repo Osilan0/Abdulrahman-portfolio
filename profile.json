@@ -1,6 +1,8 @@
 {
   "name": "Abdulrahman Osilan",
   "headline": "Co-Founder & CEO, Wathiq AI · Computational Data Science, Penn State",
+  "photo": "photo.jpg",
+  "avatar": "photo-sm.jpg",
   "location": "State College, PA and Saudi Arabia",
   "email": "",
   "booking": "https://calendly.com/a-osilan/30min",
@@ -566,15 +568,19 @@
   "suggestedQuestions": [
     {
       "section": "startups",
-      "q": "What is Wathiq AI, and what stage is it at?"
-    },
-    {
-      "section": "projects",
-      "q": "How does your video understanding pipeline work?"
+      "q": "What is Wathiq AI?"
     },
     {
       "section": "experience",
       "q": "What did you work on at PwC?"
+    },
+    {
+      "section": "overview",
+      "q": "Why do you build AI products?"
+    },
+    {
+      "section": "projects",
+      "q": "How does your video understanding pipeline work?"
     },
     {
       "section": "campus",
@@ -583,10 +589,6 @@
     {
       "section": "certifications",
       "q": "What scholarships and recognition have you received?"
-    },
-    {
-      "section": "overview",
-      "q": "Why do you build AI products?"
     }
   ]
 }

@@ -14,7 +14,7 @@
 
   function catalog() {
     const P = APP.P, out = [];
-    const views = [['assistant', 'Assistant'], ['overview', 'Overview'], ['timeline', 'Timeline'], ['resume', 'Résumé'], ...C.SECTIONS.map(s => [s.key, P.labels[s.key]]), ['contact', 'Contact']];
+    const views = ['assistant', 'overview', ...C.SECTIONS.map(s => s.key), 'resume', 'timeline', 'contact'].map(k => [k, APP.label(k)]);
     views.forEach(([k, label]) => out.push({ group: 'Go to', label, icon: k, keys: `${label} ${k}`, run: () => APP.go(k) }));
     C.allItems(P).forEach(it => out.push({
       group: 'Entries', label: it.title, hint: [APP.kind(it), it.status].filter(Boolean).join(' · '), icon: APP.iconFor(it),
@@ -25,7 +25,8 @@
     C.allItems(P).forEach(it => it.tags.forEach(t => tags.set(t.toLowerCase(), t)));
     P.skills.forEach(s => tags.set(s.toLowerCase(), s));
     [...tags.values()].forEach(t => out.push({ group: 'Skills', label: t, hint: 'Show related entries', icon: 'tag', keys: t, run: () => open(t, true) }));
-    out.push({ group: 'Actions', label: 'New conversation', icon: 'plus', keys: 'new conversation chat clear reset', run: () => APP.newChat && APP.newChat() });
+    out.push({ group: 'Actions', label: 'New chat', icon: 'plus', keys: 'new conversation chat clear reset', run: () => APP.newChat && APP.newChat() });
+    out.push({ group: 'Actions', label: 'Switch white / night mode', icon: 'moon', keys: 'theme dark light night white mode appearance', run: () => document.getElementById('themeBtn').click() });
     if (P.booking) out.push({ group: 'Actions', label: 'Book a meeting', icon: 'calendar', keys: 'book meeting call appointment schedule calendly contact', run: () => APP.go('contact') });
     return out;
   }

@@ -29,7 +29,8 @@ Visitor's browser ──question──▶ /api/chat (your server) ──▶ free
 | `worker.js`, `wrangler.jsonc`, `.assetsignore` | The Cloudflare Workers version (`.assetsignore` keeps code and notes off the site). |
 | `functions/api/chat.js` | The Cloudflare Pages version. |
 | `core.js` | Shared logic: the AI rules (`buildPrompt`), source tags, offline answers. |
-| `index.html`, `styles.css`, `app.js`, `chat.js` | The website. |
+| `index.html`, `styles.css`, `app.js`, `chat.js`, `palette.js` | The website. |
+| `photo.jpg`, `photo-sm.jpg`, `og.jpg` | Your portrait, the small round version, and the card shown when the site's link is shared. |
 | `dev.js` | A local preview server with nothing to install. |
 | `.env.example` | The settings you'll need (API key, model). |
 
@@ -45,6 +46,8 @@ Edit `profile.json`. Every section uses the same fields:
 - Write `period` like `Jun 2024 – Aug 2024` or `Sep 2023 – now`. The "My journey" timeline is drawn from these dates.
 - `faq` is where you teach the bot your own answers, for example "Why should we hire you?", "Are you open to relocating?" or "What's your work style?". When a visitor asks something similar, the bot uses your words.
 - `assistant.voice`: use `"first-person"` for "I founded…" or `"third-person"` for "Sara founded…".
+- `photo` and `avatar`: your portrait (shown on the About page) and a small square crop of your face (shown on the home page, in the sidebar and next to answers). Put the image files next to `index.html`. Without them the site shows your initials.
+- `suggestedQuestions`: the first three appear under the question box on the home page, so keep those short.
 - `booking`: your Calendly link, for example `https://calendly.com/your-name/30min`. The Contact page then shows your calendar so visitors can book without leaving the site. The top button becomes "Book a meeting", and the assistant offers the link when someone asks to meet. A free Calendly account works.
 - **Everything in `profile.json` is public.** The website loads it, and the bot can repeat any of it. Don't put anything private there, like your phone number, grades you don't want shared, or salary expectations.
 
@@ -136,9 +139,9 @@ The model also ends each answer with `[[sources: …]]` and `[[followups: … | 
 
 ## Interface features
 
-- **Command palette:** press Ctrl or ⌘ + K to jump to sections, open entries, search by skill, or ask a question.
+- **Search:** press Ctrl or ⌘ + K (or the search button in the sidebar) to jump to sections, open entries, search by skill, or ask a question.
 - **Slash commands:** type `/` in the question box for `/startups`, `/timeline`, `/resume`, `/new` and more.
-- **Timeline** and **Résumé** views, with "Copy as text" on the résumé for recruiters.
-- **Knowledge sphere:** every entry is a node on the welcome screen. Drag to rotate, click to open.
+- **Résumé** page with "Copy as text" for recruiters, and a **Timeline** you reach from the résumé, `/timeline` or search.
+- **White and night mode:** the site opens white, and the moon button in the sidebar switches. Each visitor's choice is remembered.
 - **Case studies:** add a `case` object (`problem`, `approach`, `evidence`, `next`) to any entry in `profile.json`.
 - **Booking:** with a `booking` link, the Contact page embeds your Calendly calendar. `/book`, Ctrl or ⌘ + K → "Book a meeting", and a button under booking answers all open it. When someone books, the site shows a confirmation.
