@@ -168,51 +168,48 @@
     {
       "title": "Wazeefy",
       "role": "Founder",
-      "period": "2026 – now",
-      "status": "In development",
-      "summary": "AI-supported job discovery and applications for job seekers in Saudi Arabia.",
+      "period": "Apr 2026 – Aug 2026",
+      "status": "Ran Apr–Aug 2026",
+      "summary": "AI-supported job discovery and applications for job seekers in Saudi Arabia. It ran from April to August 2026 and reached about 40 active users.",
       "details": [
-        "Designing AI job matching, tailored applications and a WhatsApp-based application flow",
+        "About 40 active users",
+        "AI job matching, tailored applications and a WhatsApp-based application flow",
         "Candidate dashboard for tracking applications, recruiter replies and interviews"
       ],
       "tags": [
         "HR tech",
         "Automation"
-      ]
+      ],
+      "link": "https://wazeefy.com/"
     },
     {
       "title": "SAIS (Saudi AI Solutions)",
       "role": "Co-Founder & Chief of Operations",
-      "period": "2026 – now",
-      "status": "Early-stage agency",
-      "summary": "A Riyadh-based AI consulting practice focused on governed, measurable AI adoption for Saudi organizations.",
+      "period": "May 2026 – Jul 2026",
+      "status": "AI consulting firm",
+      "summary": "A Riyadh-based AI consulting firm I helped establish in summer 2026. It helps Saudi businesses find operational inefficiencies and turn them into AI and automation opportunities.",
       "details": [
-        "Built the firm's Arabic writing quality system and traceable research tool (see AI & technical projects)",
-        "Created the 10-page bilingual company profile, its charts and nine SVG logos",
-        "Client engagements are team work led by colleagues; their impact figures are projections and are not claimed here"
+        "Co-led an AI operational assessment for a Saudi food and beverage group with 100+ branches: 131 operational problems identified and 75 solutions proposed across eight departments",
+        "The team estimated about SAR 2.5M in potential first-year impact from that assessment. It was presented to the client; implementation was not contracted",
+        "Other SAIS team engagements: 13 diagnostic sessions for an engineering consultancy (projected 6,000 hours a year, about SAR 800K) and an invoice and purchase-order assistant for a restaurant chain (projected about SAR 400K a year). These are estimates, not realized savings",
+        "Developed frameworks to prioritize AI opportunities by business impact, feasibility and implementation effort, and helped turn operational problems into roadmaps and business cases",
+        "Built the firm's roughly 10-page company profile, case presentations, charts and service descriptions",
+        "Built internal tools: a Python research tool of about 777 lines, and an Arabic corporate-content workflow with separate AI writing and editing agents, checked by 34 writing rules and 28 automated tests",
+        "Client names are kept confidential"
       ],
       "tags": [
         "AI consulting",
-        "AI governance",
-        "Arabic"
-      ]
-    },
-    {
-      "title": "Wasl",
-      "role": "Team member, business strategy",
-      "period": "2026",
-      "status": "Competition prototype",
-      "summary": "An NFC tap-to-receive digital receipts concept that cuts paper waste at checkout.",
-      "details": [
-        "Our team placed 2nd among 200+ participants at The Garage entrepreneurship competition",
-        "The team built a working NFC prototype; my part was business strategy, market sizing, commercialization and the pitch",
-        "Entered The Garage incubator after the competition"
+        "Operations",
+        "Automation",
+        "Arabic",
+        "Python"
       ],
-      "tags": [
-        "NFC",
-        "Retail",
-        "Pitching"
-      ]
+      "case": {
+        "problem": "A Saudi food and beverage group with 100+ branches wanted to know where AI and automation could improve its operations.",
+        "approach": "I co-led an operational diagnostic across eight departments, then prioritized the opportunities by business impact, feasibility and implementation effort.",
+        "evidence": "131 operational problems identified and 75 solutions proposed, including 51 improvement tracks, 10 integration opportunities and 14 AI builds. The team estimated about SAR 2.5M in potential first-year impact, which is a projection.",
+        "next": "The diagnostic was presented to the client. Implementation was not contracted or completed."
+      }
     }
   ],
   "projects": [
@@ -237,44 +234,6 @@
         "evidence": "Built as a team project during 320 hours of graduate-level AI training at KAUST.",
         "next": "Publish sample summaries and measure speed and accuracy before making performance claims."
       }
-    },
-    {
-      "title": "Arabic Corporate Writing QA System",
-      "role": "Builder, at SAIS",
-      "period": "",
-      "status": "Internal tool",
-      "summary": "An AI writing workflow that drafts and edits Arabic corporate documents, checked by a deterministic linter.",
-      "details": [
-        "Writer and editor agents run through an /arabic-doc workflow",
-        "ar_lint.py has 807 lines, 34 rules and 28 self-tests, modeled on writing patterns from 10 Saudi organizations",
-        "Built with AI assistance (Claude), with every rule covered by tests"
-      ],
-      "tags": [
-        "AI agents",
-        "Arabic NLP",
-        "Python"
-      ],
-      "case": {
-        "problem": "AI-written Arabic corporate text often mixes terminology, slips out of the right register and adds unsupported superlatives.",
-        "approach": "Writer and editor agents draft and revise documents, and a deterministic linter with 34 rules and 28 self-tests checks the result against writing patterns from 10 Saudi organizations.",
-        "evidence": "Applied to the firm's company profile, including 45 Arabic consistency and grammar corrections in one revision.",
-        "next": "Extend the rules and tests as new document types come in."
-      }
-    },
-    {
-      "title": "Traceable Research CLI",
-      "role": "Builder, at SAIS",
-      "period": "",
-      "status": "Internal tool",
-      "summary": "A Python command-line tool that ties published figures to their citations using the Context.dev API.",
-      "details": [
-        "777 lines of Python, built with AI assistance"
-      ],
-      "tags": [
-        "Python",
-        "Research tooling",
-        "APIs"
-      ]
     },
     {
       "title": "SmartSchedule",
@@ -473,10 +432,10 @@
     },
     {
       "title": "Campus Ambassador",
-      "role": "Orientation and campus tours",
-      "period": "",
+      "role": "University of Pennsylvania",
+      "period": "2022 – 2023",
       "status": "Past role",
-      "summary": "Welcomed 100+ students at fall and summer orientations, supported campus tours, answered questions and gave technology help.",
+      "summary": "Welcomed 100+ students at fall and summer orientations at the University of Pennsylvania, supported campus tours, answered questions and gave technology help.",
       "details": [],
       "tags": [
         "Orientation",
@@ -484,11 +443,11 @@
       ]
     },
     {
-      "title": "Arabic Conversation Program",
-      "role": "Arabic Teaching Partner",
-      "period": "",
+      "title": "Teaching Partner Program",
+      "role": "Arabic Teaching Partner, University of Pennsylvania",
+      "period": "2022 – 2023",
       "status": "Past role",
-      "summary": "Taught Arabic grammar through a university conversation program, in one-hour weekly sessions with a first-year student minoring in Arabic.",
+      "summary": "Taught Arabic grammar at the University of Pennsylvania, in one-hour weekly sessions with a first-year student minoring in Arabic.",
       "details": [],
       "tags": [
         "Teaching",
@@ -520,16 +479,20 @@
       ]
     },
     {
-      "title": "The Garage entrepreneurship competition",
-      "role": "2nd place, team Wasl",
-      "period": "2026",
-      "status": "Award",
-      "summary": "Second place among 200+ participants with Wasl, an NFC digital receipts prototype.",
-      "details": [],
+      "title": "Project 1932 Fellow",
+      "role": "Fellow",
+      "period": "2025",
+      "status": "Fellowship",
+      "summary": "A fellowship built around mentorship from senior Saudi leaders.",
+      "details": [
+        "Mentored by Saudi Arabia's Vice Minister of Sports",
+        "Invited to sit in on his meeting with the Ambassador of Belgium to Saudi Arabia"
+      ],
       "tags": [
-        "Competition",
-        "Entrepreneurship"
-      ]
+        "Mentorship",
+        "Leadership"
+      ],
+      "link": "https://lnkd.in/p/eGMpi6BJ"
     },
     {
       "title": "Smeal Consulting Training Program",
@@ -545,6 +508,19 @@
         "Consulting",
         "Financial modeling"
       ]
+    },
+    {
+      "title": "Saudi astronauts' event",
+      "role": "Mawhiba Alumni representative",
+      "period": "Sep 2023",
+      "status": "Event",
+      "summary": "Represented Mawhiba Alumni in the USA at the Saudi astronauts' event hosted by the Saudi Space Agency and Mawhiba, and put my questions to the astronauts.",
+      "details": [],
+      "tags": [
+        "Space",
+        "Mawhiba"
+      ],
+      "link": "https://lnkd.in/p/eycprR-3"
     }
   ],
   "faq": [
