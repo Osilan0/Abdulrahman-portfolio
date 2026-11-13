@@ -50,7 +50,7 @@
     if (!PROMPTS.length) PROMPTS = me ? ['What are you working on now?', 'What have you built?', 'What did you do in your internships?'] : [`What is ${P.first} working on now?`, `What has ${P.first} built?`, `What did ${P.first} do in internships?`];
     const chips = PROMPTS.slice(0, 3).map(t => `<button class="prompt" type="button" data-ask="${esc(t)}">${esc(t)}</button>`).join('');
     if ($('#prompts').innerHTML !== chips) $('#prompts').innerHTML = chips;
-    $('#wTitle').textContent = me ? `Hi, I'm ${P.first}.` : P.name;
+    $('#wTitle').textContent = !me ? P.name : APP.lang === 'ar' ? `مرحباً، أنا ${P.first}` : `Hi, I'm ${P.first}.`;
     $('#wSub').innerHTML = (P.headline || P.greeting).split('·').map(s => `<span>${esc(s.trim())}</span>`).join('');
     q.placeholder = me ? 'Ask about my work' : `Ask about ${P.first}'s work`;
   }
@@ -114,7 +114,7 @@
           { cache: false, modelTier: 'quick', onText: ({ text }) => { const t = C.streamView(text); if (t) { streamed = true; b.txt.innerHTML = md(t); scrollEnd(); } } });
         raw = r.text;
       } else if (engine === 'api') {
-        const r = await fetch('/api/chat', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ messages: turns.slice(-8) }) });
+        const r = await fetch('/api/chat', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ messages: turns.slice(-8), lang: APP.lang }) });
         const j = await r.json().catch(() => ({}));
         if (!r.ok || !j.text) throw { code: r.status === 429 ? 'rate_limited' : 'upstream_error' };
         raw = j.text;

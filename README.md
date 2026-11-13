@@ -24,6 +24,7 @@ Visitor's browser ──question──▶ /api/chat (your server) ──▶ free
 | File | What it is |
 |---|---|
 | `profile.json` | **Everything about you.** The sections and the chatbot both read from it. |
+| `profile.ar.json` | The same profile in Arabic. |
 | `api/_answer.js` | The chat logic: calls the LLM (with a backup model) and falls back to answers built from the profile. Every host uses it. |
 | `api/chat.js` | The chat endpoint on Vercel and in the local preview. |
 | `worker.js`, `wrangler.jsonc`, `.assetsignore` | The Cloudflare Workers version (`.assetsignore` keeps code and notes off the site). |
@@ -144,6 +145,7 @@ The model also ends each answer with `[[sources: …]]` and `[[followups: … | 
 - **Slash commands:** type `/` in the question box for `/startups`, `/timeline`, `/resume`, `/new` and more.
 - **Résumé** page with "Copy as text" for recruiters, and a **Timeline** you reach from the résumé, `/timeline` or search.
 - **Knowledge sphere:** the home page shows every entry as a dot on a globe. Each section is a constellation with its name above it, and arcs join related entries (same section, one mentioning another, or a shared skill). Drag to rotate, hover for a name, click a dot to open the entry, or click a section name to turn to it. Arrow keys and Enter work too. It builds itself from `profile.json`, so new entries appear automatically.
+- **Arabic and English:** the "ع" / "EN" button in the sidebar switches language. Arabic content lives in `profile.ar.json`, which mirrors `profile.json` entry for entry (same order, same number of entries), so update both when you change something. In Arabic the layout runs right to left and the assistant reads the Arabic profile. Visitors whose browser is set to Arabic get Arabic first, and `?lang=ar` or `?lang=en` in the address forces one.
 - **White and night mode:** the site opens white, and the moon button in the sidebar switches. Each visitor's choice is remembered.
 - **Case studies:** add a `case` object (`problem`, `approach`, `evidence`, `next`) to any entry in `profile.json`.
 - **Booking:** with a `booking` link, the Contact page embeds your Calendly calendar. `/book`, Ctrl or ⌘ + K → "Book a meeting", and a button under booking answers all open it. When someone books, the site shows a confirmation.

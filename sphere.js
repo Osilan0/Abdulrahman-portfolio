@@ -14,7 +14,7 @@
   host.setAttribute('aria-label', 'Map of every entry in this portfolio. Use the arrow keys to rotate it and Enter to open the entry at the front. The same entries are listed in the sections.');
   const g = cv.getContext('2d');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const coarse = matchMedia('(pointer: coarse)').matches;
+  const coarse = matchMedia('(pointer: coarse)').matches, rtl = APP.lang === 'ar';
   const GOLD = Math.PI * (3 - Math.sqrt(5)), TAU = Math.PI * 2, CAM = 3.4; // CAM: camera distance, in sphere radii
   let W = 1, H = 1, R = 1, dpr = 1;
   let yaw = 0, pitch = -0.2, vel = 0, glide = null;           // glide: {yaw, pitch} while turning toward a point
@@ -191,8 +191,8 @@
     // Section names float above their constellations when they face you
     labelBoxes = [];
     g.textBaseline = 'middle'; g.textAlign = 'center';
-    g.font = '600 10px Geist, system-ui, sans-serif';
-    if ('letterSpacing' in g) g.letterSpacing = '0.9px';
+    g.font = rtl ? '600 11px "IBM Plex Sans Arabic", system-ui, sans-serif' : '600 10px Geist, system-ui, sans-serif';
+    if ('letterSpacing' in g) g.letterSpacing = rtl ? '0px' : '0.9px';
     for (const cl of clusters) {
       proj(cl.c[0] * 1.02, cl.c[1] * 1.02, cl.c[2] * 1.02, tmp, 0);
       const vis = ease((-tmp[2] - 0.35) / 0.4) * ea * (active && active !== cl ? 0.3 : 1) * (lit && lit.cl !== cl ? 0.35 : 1);
@@ -209,7 +209,7 @@
     if (focus && !hover) {
       const a = keys ? 1 : clamp01((now - focusAt) / 350) * clamp01((focusAt + 2700 - now) / 350);
       if (a > 0.01) {
-        g.font = '500 12px Geist, system-ui, sans-serif'; g.textAlign = 'left';
+        g.font = '500 12px Geist, "IBM Plex Sans Arabic", system-ui, sans-serif'; g.textAlign = 'left';
         const label = focus.it.title, w = g.measureText(label).width + 18, x = Math.min(W - w - 4, Math.max(4, focus.x + 11)), y = focus.y < 72 ? focus.y + 13 : focus.y - 31;
         g.globalAlpha = a;
         g.fillStyle = bg; g.strokeStyle = `rgba(${ink},0.2)`; g.lineWidth = 1;

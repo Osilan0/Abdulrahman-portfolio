@@ -1,5 +1,5 @@
 {
   "functions": {
-    "api/chat.js": { "includeFiles": "profile.json", "maxDuration": 30 }
+    "api/chat.js": { "includeFiles": "profile*.json", "maxDuration": 30 }
   }
 }

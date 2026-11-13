@@ -323,3 +323,35 @@ kbd{display:inline-block;font:500 11px/1.4 var(--f-mono);padding:1px 6px;border:
 }
 @media (max-width:400px){.topbar .hide-xs{display:none}}
 @media (prefers-reduced-motion:reduce){.dots i,.fade{animation:none}.drawer,.side,.scrim,.toast{transition:none}}
+
+/* Arabic: right-to-left layout and Arabic type */
+.lang-btn{font:600 14px/1 var(--f-sans)}
+[lang="ar"]{--f-sans:'IBM Plex Sans Arabic','Geist',system-ui,sans-serif;--f-serif:'IBM Plex Sans Arabic','Geist',system-ui,sans-serif;--f-mono:'IBM Plex Sans Arabic','Geist',system-ui,sans-serif}
+[lang="ar"] *{letter-spacing:0!important}
+[lang="ar"] body{line-height:1.75}
+[lang="ar"] .brand-t span{white-space:normal}
+[lang="ar"] h1,[lang="ar"] .drawer h2,[lang="ar"] .tl-year h2{font-weight:600;line-height:1.3}
+[lang="ar"] .welcome h1{font-size:40px}
+[lang="ar"] .sec-head h1,[lang="ar"] .rv-head h1,[lang="ar"] .about-top h1{font-size:34px}
+[lang="ar"] .drawer h2{font-size:26px}
+[lang="ar"] .lang-btn{font-family:'Geist',system-ui,sans-serif;font-size:12px}
+[dir="rtl"] .brand,[dir="rtl"] .nav-btn,[dir="rtl"] .row,[dir="rtl"] .rel,[dir="rtl"] .tl-i,[dir="rtl"] .rv-row,[dir="rtl"] .pal-o,[dir="rtl"] .slash button,[dir="rtl"] .prompt,[dir="rtl"] .top-brand{text-align:right}
+[dir="rtl"] .side{border-right:0;border-left:1px solid var(--line);padding-left:12px;padding-right:max(12px,env(safe-area-inset-right,0px))}
+[dir="rtl"] .side-row{padding-left:0;padding-right:8px}
+[dir="rtl"] .dock form{padding:7px 20px 7px 7px}
+[dir="rtl"] .m-bot .txt ul,[dir="rtl"] .block ul,[dir="rtl"] .d-block ul{padding-left:0;padding-right:20px}
+[dir="rtl"] .srcs .label{margin-right:0;margin-left:4px}
+[dir="rtl"] .tools{margin-right:0;margin-left:-8px}
+[dir="rtl"] .drawer{right:auto;left:0;border-left:0;border-right:1px solid var(--line);transform:translateX(-102%)}
+[dir="rtl"] .drawer.open{transform:none}
+[dir="rtl"] .drawer header{padding:0 24px 0 12px}
+[dir="rtl"] .booking-bar{padding:12px 20px 12px 14px}
+[dir="rtl"] .pal-in{padding:0 18px 0 14px}
+[dir="rtl"] .has-case svg,[dir="rtl"] .rel svg{transform:scaleX(-1)}
+[dir="rtl"] .rv-side{align-items:flex-start}
+@media (min-width:1180px) and (min-height:620px){[dir="rtl"] .main.home .welcome,[dir="rtl"] .main.home .prompts,[dir="rtl"] .main.home .fine{text-align:right}}
+@media (max-width:900px){
+  [dir="rtl"] .side{left:auto;right:0;border-left:0;transform:translateX(102%)}
+  [dir="rtl"] .app.nav-open .side{transform:none}
+}
+@media (max-width:640px){.rv-side{flex-wrap:wrap;white-space:normal}.stage{white-space:normal}.rv-row{width:100%;margin:0;padding:8px 0}}

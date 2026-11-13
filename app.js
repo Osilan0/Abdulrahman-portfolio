@@ -2,6 +2,31 @@
   const C = window.PortfolioCore;
   const $ = s => document.querySelector(s);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  // Language: English or Arabic. The choice comes from ?lang=, then the visitor's saved choice, then the browser's language.
+  const lang = document.documentElement.lang === 'ar' ? 'ar' : 'en', ar = lang === 'ar';
+  // Arabic interface text. The page is written in English; in Arabic, every piece of interface text is swapped as it appears.
+  const AR = {"Entry": "مدخل", "Ask me": "اسألني", "Ask": "اسأل", "About": "نبذة عني", "Timeline": "المسار الزمني", "Résumé": "السيرة الذاتية", "Contact": "تواصل", "Education": "التعليم", "Skills": "المهارات", "Book": "احجز", "a meeting": "موعداً", "Book a meeting": "احجز موعداً", "Get in touch": "تواصل معي", "Case study": "دراسة حالة", "Every role, venture and project, newest first.": "كل الأدوار والمشاريع، من الأحدث إلى الأقدم.", "All": "الكل", "Undated": "بدون تاريخ", "Copy as text": "انسخ كنص", "What I'm working toward": "ما أسعى إليه", "Goals": "الأهداف", "Currently seeking": "أبحث حالياً عن", "Open to conversations about my work.": "أرحب بأي حديث عن عملي.", "Pick a time that works for you": "اختر الوقت المناسب لك", "Book a time online": "احجز موعداً عبر الإنترنت", "Open in Calendly": "افتح في Calendly", "Open booking page": "افتح صفحة الحجز", "Loading available times…": "جارٍ تحميل الأوقات المتاحة…", "Email": "البريد الإلكتروني", "Copy address": "انسخ العنوان", "Elsewhere": "حساباتي", "Based in": "مكان الإقامة", "Highlights": "أبرز النقاط", "Problem": "المشكلة", "Approach": "المنهج", "Evidence": "النتائج", "Next": "الخطوة التالية", "Ask about this": "اسأل عن هذا", "Open link": "افتح الرابط", "Sources": "المصادر", "New chat": "محادثة جديدة", "An AI answers from this portfolio only and shows its sources.": "يجيب ذكاء اصطناعي اعتماداً على هذا الملف فقط، ويعرض مصادره.", "Connecting…": "جارٍ الاتصال…", "Assistant online": "المساعد متصل", "Quick answers only": "إجابات سريعة فقط", "The AI is busy, so this answer was compiled directly from the portfolio.": "الذكاء الاصطناعي مشغول، لذا جُمعت هذه الإجابة مباشرة من الملف.", "The assistant is at capacity, so this answer was compiled directly from the portfolio.": "المساعد يعمل بكامل طاقته، لذا جُمعت هذه الإجابة مباشرة من الملف.", "The AI did not respond, so this answer was compiled directly from the portfolio.": "لم يستجب الذكاء الاصطناعي، لذا جُمعت هذه الإجابة مباشرة من الملف.", "Compiled directly from the portfolio. The AI is offline in this view.": "جُمعت هذه الإجابة مباشرة من الملف. الذكاء الاصطناعي غير متصل الآن.", "Answer copied": "نُسخت الإجابة", "Résumé copied as plain text": "نُسخت السيرة الذاتية كنص", "Email address copied": "نُسخ عنوان البريد", "Select the text to copy it": "حدّد النص لنسخه", "Booked. Check your email for the calendar invite.": "تم الحجز. ستصلك دعوة الموعد على بريدك الإلكتروني.", "Go to": "انتقل إلى", "Entries": "المدخلات", "Actions": "إجراءات", "Ask the assistant": "اسأل المساعد", "Show related entries": "اعرض المدخلات المرتبطة", "Answered from the portfolio, with sources": "إجابة من الملف مع المصادر", "Switch white / night mode": "بدّل بين الوضع الفاتح والليلي", "No matches. Press Enter to ask the assistant instead.": "لا توجد نتائج. اضغط Enter لتسأل المساعد.", "move": "تنقّل", "select": "اختيار", "toggle": "فتح وإغلاق", "About me": "نبذة عني", "Open the timeline": "افتح المسار الزمني", "Open the résumé": "افتح السيرة الذاتية", "Search everything": "ابحث في كل شيء", "Start a new chat": "ابدأ محادثة جديدة", "Search the portfolio": "ابحث في الملف", "Search (Ctrl or ⌘ + K)": "بحث (Ctrl أو ⌘ + K)", "Switch to night mode": "الوضع الليلي", "Switch to white mode": "الوضع الفاتح", "Open navigation": "افتح القائمة", "Send question": "أرسل السؤال", "Close details": "أغلق التفاصيل", "Copy answer": "انسخ الإجابة", "Copy": "نسخ", "Answer again": "أعد الإجابة", "Thinking": "يفكّر", "Ask about my work": "اسألني عن عملي", "Ask a question": "اطرح سؤالاً", "Search entries, skills and sections, or ask a question…": "ابحث في المدخلات والمهارات والأقسام، أو اطرح سؤالاً…", "Navigation": "القائمة", "Sections": "الأقسام", "Entry details": "تفاصيل المدخل", "Results": "النتائج", "Commands": "الأوامر", "Filter by section": "تصفية حسب القسم", "Command palette": "البحث"};
+  const AR_RULES = [
+    [/^(\d+) entries · drag to rotate · (click|tap) a dot to open$/, (m, n, how) => `${n} مدخلاً · اسحب للتدوير · ${how === 'tap' ? 'المس' : 'انقر'} نقطة لفتحها`],
+    [/^Select a skill to see where .+ used it\.$/, () => 'اختر مهارة لترى أين استخدمتُها.'],
+    [/^Go to (.+)$/, (m, x) => 'انتقل إلى ' + x],
+    [/^Portrait of (.+)$/, (m, x) => 'صورة ' + x], [/^Book a meeting with (.+)$/, (m, x) => 'احجز موعداً مع ' + x]
+  ];
+  const tr = s => { const k = s.trim(); if (!k) return s; let v = AR[k]; if (v == null) for (const [re, f] of AR_RULES) { if (re.test(k)) { v = k.replace(re, f); break; } } return v == null ? s : s.replace(k, v); };
+  const T = s => (ar ? tr(s) : s);
+  if (ar) {
+    const ATTRS = ['aria-label', 'title', 'placeholder', 'alt'];
+    const skip = n => { const e = n.nodeType === 1 ? n : n.parentElement; return !e || e.closest('.txt, .m-user, script, style'); };
+    const fix = n => {
+      if (n.nodeType === 3) { if (!skip(n)) { const v = tr(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v; } return; }
+      if (n.nodeType !== 1 || skip(n)) return;
+      for (const a of ATTRS) { const cur = n.getAttribute(a); if (cur) { const v = tr(cur); if (v !== cur) n.setAttribute(a, v); } }
+      for (const c of n.childNodes) fix(c);
+    };
+    fix(document.body);
+    new MutationObserver(list => { for (const m of list) { if (m.type === 'childList') m.addedNodes.forEach(fix); else fix(m.target); } })
+      .observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ATTRS });
+  }
   const PATHS = {
     assistant: 'M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z M18.5 15.5v4 M16.5 17.5h4',
     overview: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M4.5 20c1.4-3.4 4.3-5 7.5-5s6.1 1.6 7.5 5',
@@ -24,7 +49,7 @@
   const LABEL = { assistant: 'Ask', overview: 'About', timeline: 'Timeline', resume: 'Résumé', contact: 'Contact' };
   const BLURB = { startups: 'Companies I founded or co-founded.', projects: 'Things I built.', experience: 'Internships and professional roles.', campus: 'Leadership and community work.', certifications: 'Courses, credentials and recognition.' };
   const VIEWS = ['assistant', 'overview', 'timeline', 'resume', ...C.SECTIONS.map(s => s.key), 'contact'];
-  const APP = window.APP = { P: C.normalize({}), raw: {}, onProfile: [], esc, icon };
+  const APP = window.APP = { P: C.normalize({}), raw: {}, onProfile: [], esc, icon, lang, T };
   APP.itemById = id => C.allItems(APP.P).find(it => it.id === id);
   APP.kind = it => APP.P.labels[it.section] || 'Education';
   APP.iconFor = it => it.section === 'about' ? 'campus' : it.section;
@@ -41,7 +66,7 @@
     const P = APP.P;
     C.SECTIONS.forEach(s => { LABEL[s.key] = P.labels[s.key]; });
     LABEL.assistant = P.voice === 'first' ? 'Ask me' : 'Ask';
-    document.title = `${P.name} · Portfolio`;
+    document.title = `${P.name} · ${ar ? 'الملف المهني' : 'Portfolio'}`;
     $('#sName').textContent = P.name; $('#tName').textContent = P.name;
     $('#sHead').textContent = P.headline.split('·')[0].trim();
     ['#sAva', '#tAva', '#wAva'].forEach(s => { const el = $(s), html = APP.avatar(); if (el.innerHTML !== html) el.innerHTML = html; });
@@ -55,9 +80,9 @@
   const row = it => `<button class="row" type="button" data-item="${it.id}"><span class="row-top"><span class="title">${esc(it.title)}</span>${it.period ? `<span class="when">${esc(it.period)}</span>` : ''}</span>${it.role || it.status ? `<span class="role">${esc(it.role)}${pill(it.status)}</span>` : ''}${it.summary ? `<span class="sum">${esc(it.summary)}</span>` : ''}${it.case ? `<span class="has-case">Case study${icon('chev')}</span>` : ''}</button>`;
 
   function parsePeriod(p) {
-    const M = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11, spring: 2, summer: 5, fall: 8, autumn: 8, winter: 11 };
+    const M = { 'يناير': 0, 'فبراير': 1, 'مارس': 2, 'أبريل': 3, 'مايو': 4, 'يونيو': 5, 'يوليو': 6, 'أغسطس': 7, 'سبتمبر': 8, 'أكتوبر': 9, 'نوفمبر': 10, 'ديسمبر': 11, jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11, spring: 2, summer: 5, fall: 8, autumn: 8, winter: 11 };
     const d = new Date(), nowY = d.getFullYear() + d.getMonth() / 12;
-    const one = s => { const y = s.match(/(19|20)\d{2}/); if (!y) return /now|present|current/.test(s) ? nowY : null; const m = Object.keys(M).find(k => s.includes(k)); return +y[0] + (m ? M[m] / 12 : 0); };
+    const one = s => { const y = s.match(/(19|20)\d{2}/); if (!y) return /now|present|current|الآن/.test(s) ? nowY : null; const m = Object.keys(M).find(k => s.includes(k)); return +y[0] + (m ? M[m] / 12 : 0); };
     const parts = String(p).toLowerCase().split(/\s*[–—]\s*|\s+-\s+|\s+to\s+/);
     const a = one(parts[0] || ''); if (a == null) return null;
     return { start: a, end: parts.length > 1 ? (one(parts[1]) ?? a) : a };
@@ -141,7 +166,7 @@
       ${it.details.length ? `<section class="d-block"><h3 class="label">Highlights</h3><ul>${it.details.map(d => `<li>${esc(d)}</li>`).join('')}</ul></section>` : ''}
       ${steps.length ? `<section class="d-block"><h3 class="label">Case study</h3><dl class="case">${steps.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></section>` : ''}
       ${tags(it.tags)}`;
-    $('#dFoot').innerHTML = `<button class="btn primary" type="button" data-ask="Tell me more about ${me ? 'your work at' : P.first + "'s work at"} ${esc(it.title)}">${icon('assistant')}Ask about this</button>${/^https?:\/\//.test(it.link) ? `<a class="btn" href="${esc(it.link)}" target="_blank" rel="noopener">Open link${icon('link')}</a>` : ''}`;
+    $('#dFoot').innerHTML = `<button class="btn primary" type="button" data-ask="${ar ? 'حدّثني أكثر عن' : 'Tell me more about ' + (me ? 'your work at' : P.first + "'s work at")} ${esc(it.title)}">${icon('assistant')}Ask about this</button>${/^https?:\/\//.test(it.link) ? `<a class="btn" href="${esc(it.link)}" target="_blank" rel="noopener">Open link${icon('link')}</a>` : ''}`;
     $('#dBody').scrollTop = 0;
     drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.classList.add('on');
     $('#dClose').focus({ preventScroll: true });
@@ -229,6 +254,14 @@
   };
 
   // index.html already shows the name, photo and greeting, so nothing flickers while the profile loads.
-  fetch('profile.json').then(r => r.ok ? r.json() : Promise.reject(r.status)).then(APP.setProfile).catch(() => APP.setProfile({ name: 'Your Name' }));
+  // The language button: "ع" switches to Arabic, "EN" back to English. The choice is remembered on this device.
+  const lb = $('#langBtn');
+  lb.textContent = ar ? 'EN' : 'ع'; lb.lang = ar ? 'en' : 'ar'; lb.title = ar ? 'English' : 'العربية'; lb.setAttribute('aria-label', ar ? 'View the site in English' : 'عرض الموقع بالعربية');
+  lb.onclick = () => {
+    try { localStorage.setItem('lang', ar ? 'en' : 'ar'); } catch (e) {}
+    const u = new URL(location.href);
+    if (u.searchParams.has('lang')) { u.searchParams.set('lang', ar ? 'en' : 'ar'); location.replace(u.toString()); } else location.reload();
+  };
+  fetch(ar ? 'profile.ar.json' : 'profile.json').then(r => r.ok ? r.json() : Promise.reject(r.status)).then(APP.setProfile).catch(() => APP.setProfile({ name: 'Your Name' }));
   APP.go(location.hash.slice(1) || 'assistant', { keepScroll: true });
 })();

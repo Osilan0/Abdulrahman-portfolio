@@ -48,7 +48,7 @@ async function askModel(p, system, turns, env) {
 }
 
 // One request in, one { status, json, headers } out. GET reports whether the AI is configured; POST answers.
-async function answer({ method, origin, ip, body, env, profile }) {
+async function answer({ method, origin, ip, body, env, profile, profileAr }) {
   env = env || {};
   const list = providers(env);
   if (method === 'GET') return { status: 200, json: { ok: true, ai: list.length > 0 } };
@@ -73,8 +73,10 @@ async function answer({ method, origin, ip, body, env, profile }) {
   while (turns.length && turns[0].role !== 'user') turns.shift();
   if (!turns.length || turns[turns.length - 1].role !== 'user') return { status: 400, json: { error: 'Send a question.' } };
 
-  if (!profiles.has(profile)) profiles.set(profile, core.normalize(profile));
-  const P = profiles.get(profile);
+  // The Arabic site sends lang: "ar", and the assistant then reads the Arabic profile.
+  const source = body && body.lang === 'ar' && profileAr ? profileAr : profile;
+  if (!profiles.has(source)) profiles.set(source, core.normalize(source));
+  const P = profiles.get(source);
   // Retrieval: rank entries against the latest question (plus the previous one, for follow-ups).
   const query = turns.filter(t => t.role === 'user').slice(-2).reverse().map(t => t.content).join(' ');
   const prompt = core.buildPrompt(P, query);
@@ -91,7 +93,7 @@ async function answer({ method, origin, ip, body, env, profile }) {
 }
 
 // For hosts that use web-standard Request and Response objects (Cloudflare Workers and Pages).
-async function handleFetch(request, env, profile) {
+async function handleFetch(request, env, profile, profileAr) {
   const send = (status, json, headers) => new Response(JSON.stringify(json), { status, headers: { 'content-type': 'application/json; charset=utf-8', ...(headers || {}) } });
   let body = {};
   if (request.method === 'POST') {
@@ -99,7 +101,7 @@ async function handleFetch(request, env, profile) {
     try { body = await request.json(); } catch (e) { body = {}; }
   }
   const ip = request.headers.get('cf-connecting-ip') || String(request.headers.get('x-forwarded-for') || '').split(',')[0].trim();
-  const r = await answer({ method: request.method, origin: request.headers.get('origin'), ip, body, env, profile });
+  const r = await answer({ method: request.method, origin: request.headers.get('origin'), ip, body, env, profile, profileAr });
   return send(r.status, r.json, r.headers);
 }
 
