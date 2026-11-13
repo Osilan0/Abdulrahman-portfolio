@@ -183,6 +183,7 @@
     if (save) { try { localStorage.setItem('theme', t); } catch (e) {} }
     const b = $('#themeBtn'), label = t === 'dark' ? 'Switch to white mode' : 'Switch to night mode';
     b.innerHTML = icon(t === 'dark' ? 'sun' : 'moon'); b.setAttribute('aria-label', label); b.title = label;
+    document.dispatchEvent(new Event('portfolio:theme')); // the knowledge sphere recolors itself
   }
   let savedTheme = null;
   try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
@@ -204,7 +205,7 @@
     $('#dock').hidden = view !== 'assistant';
     APP.syncHome(); markNav(); setNav(false); closeDrawer();
     if (location.hash.slice(1) !== view) { try { history.replaceState(null, '', '#' + view); } catch (e) {} }
-    if (!opts.keepScroll) $('#scroll').scrollTop = 0;
+    if (!opts.keepScroll) { $('#scroll').scrollTop = 0; main.scrollTop = 0; }
     if (view === 'contact') mountBooking();
   };
   document.addEventListener('click', e => {

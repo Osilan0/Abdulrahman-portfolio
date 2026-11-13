@@ -91,13 +91,34 @@ kbd{display:inline-block;font:500 11px/1.4 var(--f-mono);padding:1px 6px;border:
 .prompt:hover{border-color:var(--line-2);background:var(--soft);color:var(--ink)}
 .fine{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 12px;margin:12px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
 .main.home .prompts{display:flex}
-.main.home .view{padding-bottom:28px}
 .main.home .fine{margin-top:22px}
-@media (min-height:600px){
-  .main.home{justify-content:center}
-  .main.home .scroll{flex:0 1 auto}
-  .main.home .view{padding-top:20px}
-  .main.home .dock{padding-bottom:max(9vh,24px)}
+
+/* Knowledge sphere: beside the greeting on wide screens, below the starter questions otherwise */
+.sph{display:none;flex:none;flex-direction:column;align-items:center;gap:8px;margin:0;min-width:0;padding:22px 20px 44px}
+.main.home .sph{display:flex}
+.sphere{position:relative;width:min(100%,460px,74vh);aspect-ratio:1;border-radius:20px;outline:none}
+.sphere:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
+.sphere canvas{display:block;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.sph-cap{font-size:12.5px;color:var(--muted);text-align:center}
+.sph-tip{position:absolute;z-index:3;pointer-events:none;display:flex;flex-direction:column;gap:1px;max-width:260px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:var(--lift);font-size:13px}
+.sph-tip b{font-weight:600}
+.sph-tip span{font-size:12px;color:var(--muted)}
+
+/* The home page is one stack (greeting, question box, sphere), centered when it fits and scrolling when it does not */
+.main.home{overflow-y:auto}
+.main.home .scroll{flex:none;overflow:visible;margin-top:auto}
+.main.home .sph{margin-bottom:auto}
+.main.home .view{padding-top:44px;padding-bottom:28px}
+@media (min-width:1180px) and (min-height:620px){
+  .main.home{display:grid;grid-template-columns:minmax(0,440px) minmax(0,540px);grid-template-rows:auto auto;column-gap:clamp(28px,4vw,56px);justify-content:center;align-content:center;overflow:hidden;padding:0 28px}
+  .main.home .scroll{grid-column:1;grid-row:1;align-self:end;margin:0}
+  .main.home .dock{grid-column:1;grid-row:2;align-self:start;padding:0}
+  .main.home .sph{grid-column:2;grid-row:1 / span 2;align-self:center;margin:0;padding:0}
+  .main.home .sphere{width:min(100%,540px,78vh)}
+  .main.home .view{padding:0 0 26px}
+  .main.home .welcome{align-items:flex-start;text-align:left}
+  .main.home .hero-ava{width:88px;height:88px}
+  .main.home .prompts,.main.home .fine{justify-content:flex-start;text-align:left}
 }
 
 /* Conversation */
@@ -264,7 +285,7 @@ kbd{display:inline-block;font:500 11px/1.4 var(--f-mono);padding:1px 6px;border:
   .app{grid-template-columns:minmax(0,1fr)}
   .side{position:fixed;top:0;bottom:0;left:0;z-index:40;width:min(290px,86vw);transform:translateX(-102%);visibility:hidden;transition:transform .26s,visibility 0s .26s;padding-top:calc(14px + env(safe-area-inset-top,0px));box-shadow:var(--lift)}
   .app.nav-open .side{transform:none;visibility:visible;transition:transform .26s}
-  .topbar{display:flex;align-items:center;gap:8px;height:56px;flex:none;padding:0 max(12px,env(safe-area-inset-right,0px)) 0 max(10px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+  .topbar{position:sticky;top:0;z-index:6;background:var(--bg);display:flex;align-items:center;gap:8px;height:56px;flex:none;padding:0 max(12px,env(safe-area-inset-right,0px)) 0 max(10px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
   .topbar .sp{flex:1}
   .topbar .btn{height:36px;padding:0 14px;font-size:13.5px}
   .top-brand{display:flex;align-items:center;gap:9px;min-width:0;padding:4px 6px;border:0;border-radius:9px;background:none;cursor:pointer}
@@ -288,6 +309,14 @@ kbd{display:inline-block;font:500 11px/1.4 var(--f-mono);padding:1px 6px;border:
 }
 @media (max-width:640px){
   .main:not(.home) #fine{display:none} /* in a conversation on a phone, keep the space for the answer */
+  /* Phone home page: compact enough that the top of the sphere shows on the first screen */
+  .main.home .view{padding-top:22px;padding-bottom:22px}
+  .main.home .hero-ava{width:84px;height:84px;margin-bottom:16px}
+  .main.home .prompts{margin-top:14px}
+  .main.home .prompt:nth-child(n+3){display:none}
+  .main.home .fine{margin-top:14px}
+  .main.home .dock{padding-bottom:4px}
+  .main.home .sph{padding:6px 14px 40px}
   .cal{height:1000px}
   .booking-bar{padding:12px 14px}
   .row-top{flex-direction:column;gap:2px}

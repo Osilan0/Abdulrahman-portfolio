@@ -75,10 +75,15 @@
           <textarea id="q" rows="1" maxlength="1000" placeholder="Ask about my work"></textarea>
           <button class="send" id="send" type="submit" aria-label="Send question" disabled><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
         </form>
-        <div class="prompts" id="prompts"></div>
+        <div class="prompts" id="prompts"><button class="prompt" type="button" data-ask="What is Wathiq AI?">What is Wathiq AI?</button><button class="prompt" type="button" data-ask="What did you work on at PwC?">What did you work on at PwC?</button><button class="prompt" type="button" data-ask="Why do you build AI products?">Why do you build AI products?</button></div>
         <p class="fine"><span id="fine">An AI answers from this portfolio only and shows its sources.</span><button class="link" type="button" id="newChat" hidden>New chat</button></p>
       </div>
     </div>
+
+    <figure class="sph" id="sph">
+      <div class="sphere" id="sphere"></div>
+      <figcaption class="sph-cap" id="sphCap">Drag to rotate · click a dot to open</figcaption>
+    </figure>
   </div>
 </div>
 
@@ -93,6 +98,7 @@
 <script src="core.js"></script>
 <script src="app.js"></script>
 <script src="palette.js"></script>
+<script src="sphere.js"></script>
 <script src="chat.js"></script>
 </body>
 </html>

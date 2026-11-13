@@ -30,6 +30,7 @@ Visitor's browser ──question──▶ /api/chat (your server) ──▶ free
 | `functions/api/chat.js` | The Cloudflare Pages version. |
 | `core.js` | Shared logic: the AI rules (`buildPrompt`), source tags, offline answers. |
 | `index.html`, `styles.css`, `app.js`, `chat.js`, `palette.js` | The website. |
+| `sphere.js` | The knowledge sphere on the home page. |
 | `photo.jpg`, `photo-sm.jpg`, `og.jpg` | Your portrait, the small round version, and the card shown when the site's link is shared. |
 | `dev.js` | A local preview server with nothing to install. |
 | `.env.example` | The settings you'll need (API key, model). |
@@ -142,6 +143,7 @@ The model also ends each answer with `[[sources: …]]` and `[[followups: … | 
 - **Search:** press Ctrl or ⌘ + K (or the search button in the sidebar) to jump to sections, open entries, search by skill, or ask a question.
 - **Slash commands:** type `/` in the question box for `/startups`, `/timeline`, `/resume`, `/new` and more.
 - **Résumé** page with "Copy as text" for recruiters, and a **Timeline** you reach from the résumé, `/timeline` or search.
+- **Knowledge sphere:** the home page shows every entry as a dot on a globe. Each section is a constellation with its name above it, and arcs join related entries (same section, one mentioning another, or a shared skill). Drag to rotate, hover for a name, click a dot to open the entry, or click a section name to turn to it. Arrow keys and Enter work too. It builds itself from `profile.json`, so new entries appear automatically.
 - **White and night mode:** the site opens white, and the moon button in the sidebar switches. Each visitor's choice is remembered.
 - **Case studies:** add a `case` object (`problem`, `approach`, `evidence`, `next`) to any entry in `profile.json`.
 - **Booking:** with a `booking` link, the Contact page embeds your Calendly calendar. `/book`, Ctrl or ⌘ + K → "Book a meeting", and a button under booking answers all open it. When someone books, the site shows a confirmation.

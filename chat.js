@@ -48,7 +48,8 @@
     const P = APP.P, me = P.voice === 'first';
     PROMPTS = P.suggested.map(x => x.q);
     if (!PROMPTS.length) PROMPTS = me ? ['What are you working on now?', 'What have you built?', 'What did you do in your internships?'] : [`What is ${P.first} working on now?`, `What has ${P.first} built?`, `What did ${P.first} do in internships?`];
-    $('#prompts').innerHTML = PROMPTS.slice(0, 3).map(t => `<button class="prompt" type="button" data-ask="${esc(t)}">${esc(t)}</button>`).join('');
+    const chips = PROMPTS.slice(0, 3).map(t => `<button class="prompt" type="button" data-ask="${esc(t)}">${esc(t)}</button>`).join('');
+    if ($('#prompts').innerHTML !== chips) $('#prompts').innerHTML = chips;
     $('#wTitle').textContent = me ? `Hi, I'm ${P.first}.` : P.name;
     $('#wSub').innerHTML = (P.headline || P.greeting).split('·').map(s => `<span>${esc(s.trim())}</span>`).join('');
     q.placeholder = me ? 'Ask about my work' : `Ask about ${P.first}'s work`;
