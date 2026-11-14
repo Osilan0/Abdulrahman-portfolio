@@ -50,7 +50,7 @@
     if (!PROMPTS.length) PROMPTS = me ? ['What are you working on now?', 'What have you built?', 'What did you do in your internships?'] : [`What is ${P.first} working on now?`, `What has ${P.first} built?`, `What did ${P.first} do in internships?`];
     const chips = PROMPTS.slice(0, 3).map(t => `<button class="prompt" type="button" data-ask="${esc(t)}">${esc(t)}</button>`).join('');
     if ($('#prompts').innerHTML !== chips) $('#prompts').innerHTML = chips;
-    $('#wTitle').textContent = !me ? P.name : APP.lang === 'ar' ? `مرحباً، أنا ${P.first}` : `Hi, I'm ${P.first}.`;
+    $('#wTitle').textContent = !me ? P.name : APP.lang === 'ar' ? `هلا، أنا ${P.first}` : `Hi, I'm ${P.first}.`;
     $('#wSub').innerHTML = (P.headline || P.greeting).split('·').map(s => `<span>${esc(s.trim())}</span>`).join('');
     q.placeholder = me ? 'Ask about my work' : `Ask about ${P.first}'s work`;
   }
@@ -139,7 +139,7 @@
   const CMDS = () => [
     ['/about', 'About me', () => APP.go('overview')],
     ['/startups', `Go to ${APP.P.labels.startups}`, () => APP.go('startups')], ['/projects', `Go to ${APP.P.labels.projects}`, () => APP.go('projects')],
-    ['/experience', 'Go to Experience', () => APP.go('experience')], ['/campus', `Go to ${APP.P.labels.campus}`, () => APP.go('campus')],
+    ['/experience', `Go to ${APP.P.labels.experience}`, () => APP.go('experience')], ['/campus', `Go to ${APP.P.labels.campus}`, () => APP.go('campus')],
     ['/honors', `Go to ${APP.P.labels.certifications}`, () => APP.go('certifications')], ['/timeline', 'Open the timeline', () => APP.go('timeline')],
     ['/resume', 'Open the résumé', () => APP.go('resume')], APP.P.booking ? ['/book', 'Book a meeting', () => APP.go('contact')] : ['/contact', 'Get in touch', () => APP.go('contact')],
     ['/search', 'Search everything', () => APP.palette && APP.palette.open()], ['/new', 'Start a new chat', () => APP.newChat()]
