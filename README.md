@@ -50,6 +50,7 @@ Edit `profile.json`. Every section uses the same fields:
 - `assistant.voice`: use `"first-person"` for "I founded…" or `"third-person"` for "Sara founded…".
 - `photo` and `avatar`: your portrait (shown on the About page) and a small square crop of your face (shown on the home page, in the sidebar and next to answers). Put the image files next to `index.html`. Without them the site shows your initials.
 - `suggestedQuestions`: the first three appear under the question box on the home page, so keep those short.
+- `welcome` (optional): a `title` and `subtitle` for the greeting on the home page. Without it, the page says "Hi, I'm" and your first name, with your headline underneath. The Arabic profile uses it; the English one doesn't.
 - `booking`: your Calendly link, for example `https://calendly.com/your-name/30min`. The Contact page then shows your calendar so visitors can book without leaving the site. The top button becomes "Book a meeting", and the assistant offers the link when someone asks to meet. A free Calendly account works.
 - **Everything in `profile.json` is public.** The website loads it, and the bot can repeat any of it. Don't put anything private there, like your phone number, grades you don't want shared, or salary expectations.
 

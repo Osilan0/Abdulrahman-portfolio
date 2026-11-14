@@ -39,8 +39,9 @@
 
   function normalize(p) {
     p = p && typeof p === 'object' ? p : {};
-    const a = p.assistant || {};
+    const a = p.assistant || {}, w = p.welcome && typeof p.welcome === 'object' ? p.welcome : {};
     const P = {
+      welcome: { title: str(w.title), subtitle: str(w.subtitle) }, // optional greeting on the home page
       name: str(p.name) || 'Your Name', headline: str(p.headline), location: str(p.location), email: str(p.email),
       links: Object.fromEntries(Object.entries(p.links && typeof p.links === 'object' ? p.links : {}).map(([k, v]) => [str(k), str(v)]).filter(([k, v]) => k && v)),
       lang: p.lang === 'ar' ? 'ar' : 'en', voice: a.voice === 'third-person' ? 'third' : 'first', greeting: str(a.greeting), availability: str(p.availability),

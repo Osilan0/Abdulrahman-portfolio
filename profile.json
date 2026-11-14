@@ -38,10 +38,11 @@
       "blurb": "Scholarships, recognition and formal training."
     }
   },
-  "about": "I'm a Computational Data Science student at Penn State and a founder working where AI, product and business meet. From an Arabic-first legal workspace to computer-vision pipelines and workflow automation, I turn user problems into prototypes, test them with real people and work to make them useful. The question I keep coming back to is how to turn technically promising ideas into products people trust, use and pay for.",
+  "about": "I'm a Computational Data Science student at Penn State and a founder working where AI, product and business meet. From an Arabic-first legal workspace to computer-vision pipelines and workflow automation, I turn user problems into prototypes, test them with real people and work to make them useful. I'm not only interested in building products, though: I also love validating them, interviewing customers, selling and marketing them, and everything that comes with it. The question I keep coming back to is how to turn technically promising ideas into products people trust, use and pay for.",
   "goals": [
-    "Move Wathiq AI from early traction to reliable, recurring customer adoption",
-    "Build auditable, Arabic-first AI workflows that are tested with real users",
+    "Make Wathiq AI a fundamental tool no lawyer can do without",
+    "Build Saudi products",
+    "Automate workflows with AI",
     "Complete my B.S. in Computational Data Science at Penn State (expected May 2027)",
     "Start more companies around overlooked business problems, and support research commercialization in Saudi Arabia"
   ],
