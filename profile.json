@@ -14,7 +14,7 @@
   },
   "assistant": {
     "voice": "first-person",
-    "greeting": "I answer questions about Abdulrahman's ventures, AI projects, internships and leadership, using only this portfolio."
+    "greeting": "I answer questions about my ventures, AI projects, internships and leadership, using only this portfolio."
   },
   "sections": {
     "startups": {
@@ -23,7 +23,7 @@
     },
     "projects": {
       "label": "AI & technical projects",
-      "blurb": "Things I built, from computer vision to Arabic language tooling."
+      "blurb": "Things I built, from computer vision to planning and analytics tools."
     },
     "experience": {
       "label": "Experience",
@@ -296,7 +296,7 @@
       "case": {
         "problem": "Three major Saudi organizations needed to assess their business continuity readiness against standards and act on the gaps.",
         "approach": "I analyzed assessment inputs, structured gaps and risks into executive recommendations, and built reports, workshop material and client presentations.",
-        "evidence": "About 500 slides produced or contributed, 6 workshops reaching about 250 managers and employees, and director recognition for a tight deadline.",
+        "evidence": "About 500 slides produced or contributed to, 6 workshops reaching about 250 managers and employees, and recognition from a director for delivering on a tight deadline.",
         "next": ""
       }
     },
@@ -511,7 +511,7 @@
       ]
     },
     {
-      "title": "Saudi astronauts' event",
+      "title": "Saudi Astronauts' Event",
       "role": "Mawhiba Alumni representative",
       "period": "Sep 2023",
       "status": "Event",

@@ -12,7 +12,7 @@
       connecting: ['', 'Connecting…', ''],
       claude: ['on', 'Assistant online', 'This preview answers with Claude. The live site uses a free model.'],
       api: ['on', 'Assistant online', 'Answers come only from this portfolio.'],
-      local: ['', 'Quick answers only', 'The AI is offline, so answers are compiled directly from the portfolio.']
+      local: ['', 'Quick answers', 'The AI is offline, so answers are compiled directly from the portfolio.']
     };
     const [cls, txt, tip] = map[kind] || map.local;
     statusEl.className = 'status ' + cls; statusEl.title = tip; statusEl.querySelector('span').textContent = txt;

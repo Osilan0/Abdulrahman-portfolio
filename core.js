@@ -17,7 +17,7 @@
   // Section intent. Word boundaries matter: "foundation" is not "founded", "residence" is not "side project".
   const TOPICS = [
     ['startups', /startup|\bfound(ed|er|ers|ing)\b|co-?found|\bventures?\b|entrepreneur|\bceo\b|business|\bcompan(y|ies)\b|شركة|شركات|شركت|ناشئ|مؤسس|ريادة/],
-    ['experience', /\bintern(s|ship|ships)?\b|experience|\bworked\b|\bwork (at|for)\b|\bjobs?\b|employ|career|research assistant|pwc|consult|تدريب|تدرب|اشتغل|خبرة|خبرات|وظيف/],
+    ['experience', /\bintern(s|ship|ships)?\b|experience|\bworked\b|\bwork (at|for)\b|\bwhere\b.*\bwork\b|\bjobs?\b|employ|career|research assistant|pwc|consult|تدريب|تدرب|اشتغل|خبرة|خبرات|وظيف/],
     ['campus', /\bclubs?\b|volunteer|campus|societ(y|ies)|council|communit|extracurricular|engagement|student|leader|president|organi[sz]ation|association|\bresiden(t|ce)|teach|tutor|نادي|أندية|تطوع|طلاب|قيادة/],
     ['certifications', /certif|\bcourses?\b|credential|licen[cs]|badge|honou?rs?\b|award|scholar|recogni|training|\bdean|competition|\bprizes?\b|شهادة|شهادات|جائزة|جوائز|منحة|تكريم/],
     ['projects', /\bprojects?\b|\bbuil(t|d|ds|ding)\b|side project|\bcode\b|\bcoding\b|\btools?\b|pipeline|github|technical|ai work|مشروع|مشاريع|برمجة|بنيت/]
@@ -193,7 +193,7 @@
   }
   const streamView = t => String(t || '').replace(/\[\[[^\]]*\]\]/g, '').replace(/\[\[[^\]]*$/, '').replace(/\[$/, '').trimEnd();
 
-  const line = it => `- **${it.title}**${it.role ? ', ' + it.role : ''}${it.period ? ' (' + it.period + ')' : ''}${it.status ? ' [' + it.status + ']' : ''}${it.summary ? ': ' + it.summary : ''}`;
+  const line = (it, comma) => `- **${it.title}**${it.role ? comma + it.role : ''}${it.period ? ' (' + it.period + ')' : ''}${it.status ? ' [' + it.status + ']' : ''}${it.summary ? ': ' + it.summary : ''}`;
   function overlap(q, target) {
     const a = new Set(words(q).filter(w => !STOP.has(w))), b = words(target).filter(w => !STOP.has(w));
     return b.length ? b.filter(w => a.has(w)).length / b.length : 0;
@@ -205,7 +205,7 @@
   function localAnswer(P, question) {
     const s = ' ' + String(question).toLowerCase() + ' ';
     const me = P.voice === 'first', my = me ? 'my' : P.first + "'s", ar = P.lang === 'ar';
-    const items = allItems(P);
+    const items = allItems(P), comma = ar ? '، ' : ', ', ln = it => line(it, comma);
     let best = null, score = 0;
     for (const f of P.faq) { const sc = overlap(question, f.q); if (sc > score) { score = sc; best = f; } }
     if (best && score >= 0.6) {
@@ -219,14 +219,14 @@
     const top = scored.length ? scored[0].it : null;
     const entry = it => {
       const sib = it.section === 'about' ? P.education : P[it.section] || [];
-      return { text: [`**${it.title}**${it.role ? ', ' + it.role : ''}${it.period ? ' (' + it.period + ')' : ''}${it.status ? (ar ? '. المرحلة: ' : '. Stage: ') + it.status : ''}.`, it.summary, ...it.details.map(d => '- ' + d)].filter(Boolean).join('\n'), ids: [it.id], followups: more(P, sib, [it.id]) };
+      return { text: [`**${it.title}**${it.role ? comma + it.role : ''}${it.period ? ' (' + it.period + ')' : ''}${it.status ? (ar ? '. المرحلة: ' : '. Stage: ') + it.status : ''}.`, it.summary, ...it.details.map(d => '- ' + d)].filter(Boolean).join('\n'), ids: [it.id], followups: more(P, sib, [it.id]) };
     };
     if (top && names(P, s, top)) return entry(top);
     for (const [k, re] of TOPICS) {
       if (!re.test(s)) continue;
       const label = P.labels[k], list = P[k];
       if (!list.length) return { text: ar ? `ما فيه شي تحت «${label}» في الموقع للحين.` : `There's nothing under ${label} in ${my} portfolio yet.`, ids: [], followups: [] };
-      return { text: (ar ? `هذا اللي عندي تحت «${label}»:\n` : `Here's what's in ${my} portfolio under ${label}:\n`) + list.map(line).join('\n'), ids: list.map(it => it.id), followups: list.slice(0, 2).map(it => tellMe(P) + it.title) };
+      return { text: (ar ? `هذا اللي عندي تحت «${label}»:\n` : `Here's what's in ${my} portfolio under ${label}:\n`) + list.map(ln).join('\n'), ids: list.map(it => it.id), followups: list.slice(0, 2).map(it => tellMe(P) + it.title) };
     }
     if (/goal|future|plan|looking for|ambition|next|dream|aspir|open to|هدف|أهداف|اهداف|مستقبل|خطط|طموح/.test(s) && (P.goals.length || P.lookingFor))
       return { text: [P.lookingFor && (ar ? `أدوّر على: ${P.lookingFor}` : `${me ? "I'm" : P.first + ' is'} looking for: ${P.lookingFor}`), P.goals.length && (ar ? 'أهدافي:\n' : 'Goals:\n') + P.goals.map(g => '- ' + g).join('\n')].filter(Boolean).join('\n'), ids: [], followups: [] };
@@ -234,7 +234,7 @@
       return { text: [P.booking && bookLine(), P.email && (ar ? `تقدر تراسلني على ${P.email}.` : `You can email ${me ? 'me' : P.first} at ${P.email}.`), ...Object.entries(P.links).map(([k, v]) => `- ${k}: ${v}`)].filter(Boolean).join('\n') || (ar ? 'بيانات التواصل مو موجودة في الموقع للحين.' : 'Contact details are not in the portfolio yet.'), ids: [], followups: [] };
     if (/study|studying|universit|degree|major|school|educat|college|gpa|foundation|upenn|تدرس|دراست|جامع|تخصص|معدل|بكالوريوس/.test(s) && P.education.length) {
       if (top && top.section === 'about') return entry(top); // "foundation year at UPenn" opens that entry, "GPA" opens Penn State
-      return { text: P.education.map(line).join('\n'), ids: P.education.map(it => it.id), followups: [] };
+      return { text: P.education.map(ln).join('\n'), ids: P.education.map(it => it.id), followups: [] };
     }
     if (/skill|good at|strength|tool|stack|language|مهار|لغات|اللغات/.test(s) && P.skills.length)
       return { text: ar ? `هذي مهاراتي المذكورة في الموقع: ${P.skills.join('، ')}.` : `Skills listed in ${my} portfolio: ${P.skills.join(', ')}.`, ids: [], followups: [] };
