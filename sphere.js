@@ -21,6 +21,8 @@
   let nodes = [], edges = [], clusters = [], dust = [], pulses = [], labelBoxes = [];
   let hover = null, focus = null, focusAt = 0, active = null, activeAt = 0, drag = null, keys = false;
   let ink = '17,17,17', bg = '#ffffff', frame = 0, visible = true, seen = false, born = 0;
+  let tints = null; // with the AI look, each constellation gets its own color (--sph-colors in look.css); otherwise everything is ink
+  const tint = nd => (tints ? tints[clusters.indexOf(nd.cl) % tints.length] : ink);
 
   const norm = v => { const l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; };
   const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
@@ -95,6 +97,8 @@
     const m = (cs.getPropertyValue('--ink') || '#111111').trim().match(/^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
     ink = m ? [1, 2, 3].map(i => parseInt(m[i], 16)).join(',') : '17,17,17';
     bg = (cs.getPropertyValue('--bg') || '#ffffff').trim();
+    const list = (cs.getPropertyValue('--sph-colors') || '').split('/').map(x => x.trim()).filter(x => /^\d+,\d+,\d+$/.test(x));
+    tints = list.length ? list : null;
   }
   function resize() {
     const r = host.getBoundingClientRect();
@@ -173,7 +177,7 @@
         for (let j = 0; j < 4; j++) {
           const tt = Math.max(0, pu.t - j * 0.04), f = (pu.rev ? 1 - tt : tt) * last, i = Math.min(last - 1, f | 0), fr = f - i;
           const x = s[i * 3] + (s[i * 3 + 3] - s[i * 3]) * fr, y = s[i * 3 + 1] + (s[i * 3 + 4] - s[i * 3 + 1]) * fr, z = s[i * 3 + 2];
-          g.fillStyle = `rgba(${ink},${((0.85 - j * 0.2) * (0.25 + 0.75 * front(z)) * pu.e.dim).toFixed(3)})`;
+          g.fillStyle = `rgba(${tint(pu.e.a)},${((0.85 - j * 0.2) * (0.25 + 0.75 * front(z)) * pu.e.dim).toFixed(3)})`;
           g.beginPath(); g.arc(x, y, 2 - j * 0.32, 0, TAU); g.fill();
         }
       }
@@ -183,8 +187,8 @@
     const mark = lit || focus;
     for (const nd of nodes.slice().sort((a, b) => b.z - a.z)) {
       const f = front(nd.z), a = (0.2 + 0.8 * f) * nd.dim * clamp01(nd.s * 1.4);
-      if (f > 0.5 && nd.dim > 0.6) { g.fillStyle = `rgba(${ink},${(0.07 * (f - 0.5) * 2).toFixed(3)})`; g.beginPath(); g.arc(nd.x, nd.y, nd.r * 2.7, 0, TAU); g.fill(); }
-      g.fillStyle = `rgba(${ink},${a.toFixed(3)})`; g.beginPath(); g.arc(nd.x, nd.y, nd.r, 0, TAU); g.fill();
+      if (f > 0.5 && nd.dim > 0.6) { g.fillStyle = `rgba(${tint(nd)},${((tints ? 0.16 : 0.07) * (f - 0.5) * 2).toFixed(3)})`; g.beginPath(); g.arc(nd.x, nd.y, nd.r * 2.7, 0, TAU); g.fill(); }
+      g.fillStyle = `rgba(${tint(nd)},${a.toFixed(3)})`; g.beginPath(); g.arc(nd.x, nd.y, nd.r, 0, TAU); g.fill();
       if (nd === mark) { g.strokeStyle = `rgba(${ink},0.9)`; g.lineWidth = 1; g.beginPath(); g.arc(nd.x, nd.y, nd.r + 5 + (reduced ? 0 : Math.sin(frame / 9) * 1.1), 0, TAU); g.stroke(); }
     }
 

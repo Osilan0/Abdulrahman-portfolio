@@ -1,0 +1,192 @@
+/* The "AI look": color, glow and motion layered on top of styles.css.
+   Every rule here starts with [data-look=ai], so the classic black-and-white design is untouched underneath.
+   To go back to the classic design, change data-look="ai" to data-look="classic" on the <html> tag in index.html.
+   To compare the two without changing anything, add ?look=classic or ?look=ai to the site's address. */
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+@keyframes ai-ang{to{--ang:360deg}}
+@keyframes ai-spin{to{transform:rotate(1turn)}}
+@keyframes ai-rise{from{opacity:0;transform:translateY(12px)}}
+@keyframes ai-pop{from{opacity:0;transform:scale(.94)}}
+@keyframes ai-fade{from{opacity:0}}
+@keyframes ai-aurora{0%{transform:translate3d(-3%,-2%,0) scale(1)}50%{transform:translate3d(3%,2%,0) scale(1.08)}100%{transform:translate3d(-1%,4%,0) scale(1.03)}}
+@keyframes ai-shimmer{to{background-position:-200% 0}}
+@keyframes ai-ping{70%,100%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
+@keyframes ai-bounce{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+
+[data-look=ai]{
+  --a1:#7c5cff; --a2:#4f7cff; --a3:#22b8ee; --a4:#d946ef;
+  --grad:linear-gradient(110deg,var(--a1),var(--a2) 52%,var(--a3));
+  --ring:conic-gradient(from var(--ang),var(--a1),var(--a2),var(--a3),var(--a4),var(--a1));
+  --glow:rgba(104,88,252,.34);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  /* One color per constellation on the knowledge sphere (sphere.js reads this) */
+  --sph-colors:124,92,255 / 79,124,255 / 34,184,238 / 20,184,166 / 217,70,239 / 244,114,182;
+}
+[data-look=ai] ::selection{background:color-mix(in srgb,var(--a1) 26%,transparent)}
+[data-look=ai] :focus-visible{outline-color:var(--a2)}
+[data-look=ai] .sphere:focus-visible{outline-color:var(--a2)}
+
+/* ── Home: a soft aurora behind the greeting ─────────────────────────── */
+[data-look=ai] .main{position:relative;isolation:isolate}
+[data-look=ai] .main.home::before{content:"";position:fixed;inset:-14%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(30% 34% at 36% 30%,color-mix(in srgb,var(--a1) 17%,transparent),transparent 72%),
+    radial-gradient(28% 32% at 80% 24%,color-mix(in srgb,var(--a3) 15%,transparent),transparent 72%),
+    radial-gradient(32% 34% at 66% 78%,color-mix(in srgb,var(--a4) 11%,transparent),transparent 72%);
+  animation:ai-fade 1.2s ease both,ai-aurora 24s ease-in-out infinite alternate}
+[data-look=ai][data-theme=dark] .main.home::before{opacity:.8}
+@media (min-width:901px){[data-look=ai] .side{position:relative;z-index:2}} /* the sidebar stays above the aurora */
+
+/* The photo: a slowly turning ring of light */
+[data-look=ai] .hero-ava{position:relative;isolation:isolate;border-radius:50%}
+[data-look=ai] .hero-ava::before,[data-look=ai] .hero-ava::after{content:"";position:absolute;border-radius:50%;background:var(--ring);animation:ai-spin 9s linear infinite}
+[data-look=ai] .hero-ava::before{inset:-5px;z-index:-1}
+[data-look=ai] .hero-ava::after{inset:-10px;z-index:-2;filter:blur(16px);opacity:.42}
+[data-look=ai] .hero-ava .ava,[data-look=ai] .hero-ava .mark{box-shadow:0 0 0 2.5px var(--bg)}
+
+/* The greeting fades from ink into the accent colors */
+[data-look=ai] .welcome h1{padding-block:.14em .2em;margin-block:-.14em -.2em;
+  background:linear-gradient(100deg,var(--ink) 0%,var(--ink) 38%,var(--a1) 66%,var(--a2) 84%,var(--a3) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+[data-look=ai][dir=rtl] .welcome h1{background-image:linear-gradient(260deg,var(--ink) 0%,var(--ink) 38%,var(--a1) 66%,var(--a2) 84%,var(--a3) 100%)}
+
+/* The question box: a glowing edge that wakes up when you focus it */
+[data-look=ai] .dock form{border:1.5px solid transparent;
+  background:linear-gradient(var(--surface),var(--surface)) padding-box,
+    linear-gradient(110deg,color-mix(in srgb,var(--a1) 55%,var(--line-2)),color-mix(in srgb,var(--a2) 40%,var(--line-2)) 50%,color-mix(in srgb,var(--a3) 55%,var(--line-2))) border-box;
+  transition:box-shadow .35s}
+[data-look=ai] .main.home .dock form{box-shadow:var(--lift),-18px 8px 38px -22px var(--a1),18px 8px 38px -22px var(--a3)}
+[data-look=ai] .dock form:focus-within{border-color:transparent;background:linear-gradient(var(--surface),var(--surface)) padding-box,var(--ring) border-box;animation:ai-ang 5s linear infinite;
+  box-shadow:var(--lift),-20px 8px 44px -18px var(--a1),20px 8px 44px -18px var(--a3),0 16px 46px -20px var(--a4)}
+[data-look=ai] .send{background:var(--grad);color:#fff;transition:transform .15s var(--ease),opacity .15s,box-shadow .2s}
+[data-look=ai] .send:not(:disabled){box-shadow:0 8px 20px -8px var(--glow)}
+[data-look=ai] .send:disabled{background:var(--ink);color:var(--bg);opacity:.18}
+@media (hover:hover){[data-look=ai] .send:not(:disabled):hover{transform:scale(1.07)}}
+
+/* Starter questions: a spark in front, a small lift on hover */
+[data-look=ai] .prompt{display:inline-flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--surface) 72%,transparent);transition:transform .18s var(--ease),border-color .18s,box-shadow .18s,background .18s,color .18s}
+[data-look=ai] .prompt::before,[data-look=ai] .block li::before,[data-look=ai] .d-block li::before{content:"";flex:none;width:13px;height:13px;background:var(--grad);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5l2.7 7.3 7.3 2.7-7.3 2.7L12 21.5l-2.7-7.3L2 11.5l7.3-2.7z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.5l2.7 7.3 7.3 2.7-7.3 2.7L12 21.5l-2.7-7.3L2 11.5l7.3-2.7z'/%3E%3C/svg%3E") center/contain no-repeat}
+@media (hover:hover){[data-look=ai] .prompt:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--a1) 45%,var(--line-2));background:var(--surface);box-shadow:0 10px 22px -14px var(--glow)}}
+
+/* The home page arrives in steps instead of all at once */
+[data-look=ai] .main.home .hero-ava{animation:ai-pop .7s var(--ease) both}
+[data-look=ai] .main.home .welcome h1{animation:ai-rise .7s .08s var(--ease) both}
+[data-look=ai] .main.home .welcome .sub{animation:ai-rise .7s .16s var(--ease) both}
+[data-look=ai] .main.home .dock form{animation:ai-rise .7s .24s var(--ease) both}
+[data-look=ai] .main.home .dock form:focus-within{animation:ai-rise .7s .24s var(--ease) both,ai-ang 5s linear infinite}
+[data-look=ai] .main.home .prompt{animation:ai-rise .6s .34s var(--ease) both}
+[data-look=ai] .main.home .prompt:nth-child(2){animation-delay:.41s}
+[data-look=ai] .main.home .prompt:nth-child(3){animation-delay:.48s}
+[data-look=ai] .main.home .fine{animation:ai-fade .8s .6s ease both}
+[data-look=ai] .main.home .sph{animation:ai-pop 1s .2s var(--ease) both}
+
+/* ── Moving between pages ────────────────────────────────────────────── */
+[data-look=ai] .view:not([hidden]){animation:ai-fade .35s ease both}
+[data-look=ai] .sec-head::before{content:"";display:block;width:34px;height:4px;margin-bottom:18px;border-radius:4px;background:var(--grad)}
+[data-look=ai] .sec-head,[data-look=ai] .rv-head,[data-look=ai] .about-top{animation:ai-rise .5s var(--ease) both}
+[data-look=ai] .rows > .row,[data-look=ai] .tl-year,[data-look=ai] .rv-sec,[data-look=ai] #v-overview > .lead,[data-look=ai] #v-overview > .block,[data-look=ai] #v-contact > :not(.sec-head),[data-look=ai] .chips{animation:ai-rise .5s var(--ease) both;animation-delay:.06s}
+[data-look=ai] :is(.rows > .row,.tl-year,.rv-sec,#v-overview > *,#v-contact > *):nth-child(2){animation-delay:.1s}
+[data-look=ai] :is(.rows > .row,.tl-year,.rv-sec,#v-overview > *,#v-contact > *):nth-child(3){animation-delay:.14s}
+[data-look=ai] :is(.rows > .row,.tl-year,.rv-sec,#v-overview > *,#v-contact > *):nth-child(4){animation-delay:.18s}
+[data-look=ai] :is(.rows > .row,.tl-year,.rv-sec,#v-overview > *,#v-contact > *):nth-child(5){animation-delay:.22s}
+[data-look=ai] :is(.rows > .row,.tl-year,.rv-sec,#v-overview > *,#v-contact > *):nth-child(6){animation-delay:.26s}
+[data-look=ai] :is(.rows > .row,.tl-year,.rv-sec,#v-overview > *,#v-contact > *):nth-child(n+7){animation-delay:.3s}
+[data-look=ai] #v-timeline .sec-head,[data-look=ai] #v-timeline .chips{animation:none} /* the timeline redraws when a filter is pressed; only its entries should move */
+
+/* Entries: a soft highlight follows the pointer down the list */
+[data-look=ai] .row{position:relative}
+[data-look=ai] .row > *{position:relative}
+[data-look=ai] .row::before{content:"";position:absolute;inset:3px -14px;border-radius:14px;opacity:0;transition:opacity .2s;pointer-events:none;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--a1) 9%,transparent),color-mix(in srgb,var(--a3) 4%,transparent))}
+[data-look=ai][dir=rtl] .row::before{background:linear-gradient(270deg,color-mix(in srgb,var(--a1) 9%,transparent),color-mix(in srgb,var(--a3) 4%,transparent))}
+[data-look=ai] .has-case{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+[data-look=ai] .has-case svg{color:var(--a2);transition:transform .2s var(--ease)}
+@media (hover:hover){
+  [data-look=ai] .row:hover::before{opacity:1}
+  [data-look=ai] .row:hover .title{text-decoration:none}
+  [data-look=ai] .row:hover .has-case svg{transform:translateX(3px)}
+  [data-look=ai][dir=rtl] .row:hover .has-case svg{transform:scaleX(-1) translateX(3px)}
+}
+[data-look=ai] .stage{background:color-mix(in srgb,var(--a1) 10%,var(--soft));color:color-mix(in srgb,var(--a1) 30%,var(--ink))}
+[data-look=ai] .tagb{transition:border-color .15s,background .15s,color .15s,transform .15s var(--ease)}
+@media (hover:hover){[data-look=ai] .tagb:hover{border-color:color-mix(in srgb,var(--a1) 50%,var(--line-2));background:color-mix(in srgb,var(--a1) 8%,transparent);transform:translateY(-1px)}}
+[data-look=ai] .chip{transition:background .15s,border-color .15s,color .15s}
+[data-look=ai] .chip[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:#fff}
+[data-look=ai] .tl-year h2{width:max-content;max-width:100%;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* Lists of goals and highlights: sparks instead of dots */
+[data-look=ai] .block ul,[data-look=ai] .d-block ul{list-style:none;padding-inline:0}
+[data-look=ai] .block li,[data-look=ai] .d-block li{position:relative;padding-inline-start:24px}
+[data-look=ai] .block li::before,[data-look=ai] .d-block li::before{position:absolute;inset-inline-start:2px;top:.42em}
+[data-look=ai][lang=ar] .block li::before,[data-look=ai][lang=ar] .d-block li::before{top:.6em}
+[data-look=ai] .portrait{box-shadow:0 0 0 1px var(--line),0 34px 60px -34px var(--glow)}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────── */
+[data-look=ai] .nav-btn{position:relative;transition:background .15s,color .15s}
+[data-look=ai] .nav-btn[aria-current="page"]{background:linear-gradient(90deg,color-mix(in srgb,var(--a1) 13%,var(--soft)),var(--soft) 85%)}
+[data-look=ai][dir=rtl] .nav-btn[aria-current="page"]{background:linear-gradient(270deg,color-mix(in srgb,var(--a1) 13%,var(--soft)),var(--soft) 85%)}
+[data-look=ai] .nav-btn[aria-current="page"]::before{content:"";position:absolute;inset-block:10px;inset-inline-start:0;width:3px;border-radius:3px;background:linear-gradient(var(--a1),var(--a3))}
+[data-look=ai] .nav-btn[aria-current="page"] svg{color:var(--a1)}
+[data-look=ai] .status.on i{background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.55);animation:ai-ping 2.2s ease-out infinite}
+[data-look=ai] .btn{transition:transform .15s var(--ease),background .15s,box-shadow .2s,opacity .15s}
+[data-look=ai] .btn.primary{position:relative;overflow:hidden}
+[data-look=ai] .btn.primary::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 32%,color-mix(in srgb,var(--a2) 55%,transparent) 50%,transparent 68%);transform:translateX(-130%);transition:transform .7s var(--ease)}
+@media (hover:hover){
+  [data-look=ai] .btn.primary:hover{opacity:1;transform:translateY(-1px);box-shadow:0 12px 26px -14px var(--glow)}
+  [data-look=ai] .btn.primary:hover::after{transform:translateX(130%)}
+}
+
+/* ── Conversation ────────────────────────────────────────────────────── */
+[data-look=ai] .m-user{background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 13%,var(--soft)),color-mix(in srgb,var(--a3) 9%,var(--soft)));animation:ai-rise .35s var(--ease) both}
+[data-look=ai] .m-bot{animation:ai-rise .35s var(--ease) both}
+[data-look=ai] .m-bot .av{position:relative;isolation:isolate;border-radius:50%}
+/* While the assistant thinks: a ring spins around its photo and the word "Thinking" shimmers */
+[data-look=ai] .m-bot:has(.dots) .av::before{content:"";position:absolute;inset:-4px;z-index:-1;border-radius:50%;background:conic-gradient(var(--a1),var(--a3),var(--a4),var(--a1));animation:ai-spin 1.1s linear infinite}
+[data-look=ai] .m-bot:has(.dots) .av .ava,[data-look=ai] .m-bot:has(.dots) .av .mark{box-shadow:0 0 0 2px var(--bg)}
+[data-look=ai] .dots{align-items:center}
+[data-look=ai] .dots i{background:var(--a1);animation:ai-bounce 1.1s ease-in-out infinite}
+[data-look=ai] .dots i:nth-child(2){background:var(--a2);animation-delay:.14s}
+[data-look=ai] .dots i:nth-child(3){background:var(--a3);animation-delay:.28s}
+[data-look=ai] .dots::after{content:attr(aria-label) "…";margin-inline-start:7px;font-size:14px;line-height:1.4;
+  background:linear-gradient(90deg,var(--muted) 35%,var(--ink) 50%,var(--muted) 65%) 0 0/200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:ai-shimmer 1.5s linear infinite}
+/* The answer appears word by word (look.js wraps the words), then its sources and next questions follow */
+[data-look=ai] .m-bot .txt.fade{animation:none}
+[data-look=ai] .m-bot .txt .w{animation:ai-fade .45s ease both;animation-delay:calc(var(--i) * var(--step,24ms))}
+[data-look=ai] .m-bot .meta-row,[data-look=ai] .m-bot .note,[data-look=ai] .m-bot .related,[data-look=ai] .m-bot .book-cta{animation:ai-rise .4s var(--ease) both;animation-delay:var(--after,0ms)}
+[data-look=ai] .src{transition:border-color .15s,background .15s,color .15s}
+@media (hover:hover){[data-look=ai] .src:hover{border-color:color-mix(in srgb,var(--a1) 50%,var(--line-2));background:color-mix(in srgb,var(--a1) 8%,transparent)}}
+[data-look=ai] .rel{transition:transform .18s var(--ease),color .15s}
+[data-look=ai] .rel svg{color:var(--a1)}
+@media (hover:hover){
+  [data-look=ai] .rel:hover{transform:translateX(3px)}
+  [data-look=ai][dir=rtl] .rel:hover{transform:translateX(-3px)}
+}
+
+/* ── Panels ──────────────────────────────────────────────────────────── */
+[data-look=ai] .scrim{-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+[data-look=ai] .drawer::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--grad)}
+[data-look=ai] .drawer.open .body > *{animation:ai-rise .45s var(--ease) both;animation-delay:.08s}
+[data-look=ai] .drawer.open .body > :nth-child(2){animation-delay:.12s}
+[data-look=ai] .drawer.open .body > :nth-child(3){animation-delay:.16s}
+[data-look=ai] .drawer.open .body > :nth-child(4){animation-delay:.2s}
+[data-look=ai] .drawer.open .body > :nth-child(n+5){animation-delay:.24s}
+[data-look=ai] .pal-wrap{-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+[data-look=ai] .pal-wrap:not([hidden]) .pal{animation:ai-pop .22s var(--ease) both;box-shadow:var(--lift),0 0 0 1px color-mix(in srgb,var(--a1) 22%,transparent),0 40px 90px -40px var(--glow)}
+[data-look=ai] .pal-in svg{color:var(--a1)}
+[data-look=ai] .pal-o[aria-selected="true"]{background:linear-gradient(90deg,color-mix(in srgb,var(--a1) 13%,var(--soft)),var(--soft) 85%)}
+[data-look=ai][dir=rtl] .pal-o[aria-selected="true"]{background:linear-gradient(270deg,color-mix(in srgb,var(--a1) 13%,var(--soft)),var(--soft) 85%)}
+[data-look=ai] .pal-o[aria-selected="true"] svg{color:var(--a1)}
+[data-look=ai] .slash button[aria-selected="true"]{background:color-mix(in srgb,var(--a1) 11%,var(--soft))}
+[data-look=ai] .sph-tip{border-color:color-mix(in srgb,var(--a1) 30%,var(--line))}
+
+/* Phones: the top bar turns to frosted glass, and the aurora spans the whole screen */
+@media (max-width:900px){
+  [data-look=ai] .topbar{background:color-mix(in srgb,var(--bg) 76%,transparent);-webkit-backdrop-filter:saturate(1.5) blur(14px);backdrop-filter:saturate(1.5) blur(14px)}
+}
+
+/* Visitors who ask their device for less motion get the colors without the movement */
+@media (prefers-reduced-motion:reduce){
+  [data-look=ai] *,[data-look=ai] *::before,[data-look=ai] *::after{animation:none!important;transition:none!important}
+}

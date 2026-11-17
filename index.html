@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-look="ai">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -19,10 +19,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
-<script>(function(){var l=null;try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang')}catch(e){}if(l!=='ar'&&l!=='en')l=/^ar\b/i.test(navigator.language||'')?'ar':'en';var d=document.documentElement;d.lang=l;d.dir=l==='ar'?'rtl':'ltr'})();</script>
+<script>(function(){var l=null;try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang')}catch(e){}if(l!=='ar'&&l!=='en')l=/^ar\b/i.test(navigator.language||'')?'ar':'en';var d=document.documentElement;d.lang=l;d.dir=l==='ar'?'rtl':'ltr';var k=null;try{k=new URLSearchParams(location.search).get('look')}catch(e){}if(k==='ai'||k==='classic')d.dataset.look=k})();</script>
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
 <link rel="preload" as="image" href="photo-sm.jpg">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="look.css">
 </head>
 <body>
 
@@ -102,5 +103,6 @@
 <script src="palette.js"></script>
 <script src="sphere.js"></script>
 <script src="chat.js"></script>
+<script src="look.js"></script>
 </body>
 </html>
