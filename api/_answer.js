@@ -79,7 +79,7 @@ async function answer({ method, origin, ip, body, env, profile, profileAr }) {
   const P = profiles.get(source);
   // Retrieval: rank entries against the latest question (plus the previous one, for follow-ups).
   const query = turns.filter(t => t.role === 'user').slice(-2).reverse().map(t => t.content).join(' ');
-  const prompt = core.buildPrompt(P, query);
+  const prompt = core.buildPrompt(P, query, turns[turns.length - 1].content);
   for (const p of list) {
     try {
       return { status: 200, json: { text: await askModel(p, prompt, turns, env), model: p.model } };

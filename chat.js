@@ -110,7 +110,7 @@
     let raw = '', note = '', streamed = false;
     try {
       if (engine === 'claude') {
-        const r = await sample([{ role: 'user', content: C.buildPrompt(P, query) + "\n\nThe visitor's messages follow. Answer the last one." }, ...turns.slice(-8)],
+        const r = await sample([{ role: 'user', content: C.buildPrompt(P, query, text) + "\n\nThe visitor's messages follow. Answer the last one." }, ...turns.slice(-8)],
           { cache: false, modelTier: 'quick', onText: ({ text }) => { const t = C.streamView(text); if (t) { streamed = true; b.txt.innerHTML = md(t); scrollEnd(); } } });
         raw = r.text;
       } else if (engine === 'api') {
